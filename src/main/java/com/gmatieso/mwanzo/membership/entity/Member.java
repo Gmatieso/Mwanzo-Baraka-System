@@ -1,7 +1,8 @@
 package com.gmatieso.mwanzo.membership.entity;
 
-import com.gmatieso.mwanzo.common.utils.MemberStatus;
+import com.gmatieso.mwanzo.common.utils.Status;
 import com.gmatieso.mwanzo.common.utils.MemberType;
+import com.gmatieso.mwanzo.loans.entity.Loan;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,6 +31,9 @@ public class Member {
     @OneToOne(mappedBy = "member")
     private Share share;
 
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    private List<Loan> loan;
+
 
     @Enumerated(EnumType.STRING)
     @Column(name = "member_type", nullable = false)
@@ -43,7 +47,7 @@ public class Member {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private MemberStatus status = MemberStatus.ACTIVE;
+    private Status status = Status.ACTIVE;
 
     @Column(name = "exit_notice_date")
     private LocalDateTime exitNoticeDate;
