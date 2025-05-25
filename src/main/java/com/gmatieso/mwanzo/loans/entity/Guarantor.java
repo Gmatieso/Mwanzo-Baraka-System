@@ -22,4 +22,8 @@ public class Guarantor {
 
     @Column(name = "confirmed")
     private Confirmed confirmed;
+
+    @ManyToOne()
+    @JoinColumn(name = "loan_id")
+    private Loan loan;
 }
