@@ -7,7 +7,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -22,13 +23,17 @@ public class Member {
     @Column(name = "members_name", nullable = false)
     private String name;
 
+    @Column(name = "contribution_id")
+    @OneToMany( mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    private List<Contribution> contribution;
+
 
     @Enumerated(EnumType.STRING)
     @Column(name = "member_type", nullable = false)
     private MemberType memberType;
 
     @Column(name = "registration_date", nullable = false)
-    private LocalDate registrationDate;
+    private LocalDateTime registrationDate;
 
     @Column(name = "registration_fees",nullable = false)
     private BigDecimal registrationFees;
@@ -38,10 +43,10 @@ public class Member {
     private MemberStatus status = MemberStatus.ACTIVE;
 
     @Column(name = "exit_notice_date")
-    private LocalDate exitNoticeDate;
+    private LocalDateTime exitNoticeDate;
 
     @Column(name = "exit_date")
-    private LocalDate exitDate;
+    private LocalDateTime exitDate;
 
 
 }
