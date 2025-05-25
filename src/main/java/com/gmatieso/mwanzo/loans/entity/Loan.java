@@ -38,9 +38,12 @@ public class Loan {
     private Member member;
 
     @OneToMany(mappedBy = "loan", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    private Guarantor guarantor;
+    private List<Guarantor> guarantor;
 
     @OneToMany(mappedBy = "loan")
     private List<Penalty> penalty;
+
+    @OneToMany(mappedBy = "loan", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    private List<Repayment> repayments;
 
 }
