@@ -36,7 +36,7 @@ public class Member {
     private List<Loan> loan;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    private Guarantor guarantor;
+    private List<Guarantor> guarantor;
 
 
     @Enumerated(EnumType.STRING)
