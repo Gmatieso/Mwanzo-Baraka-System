@@ -2,6 +2,7 @@ package com.gmatieso.mwanzo.membership.entity;
 
 import com.gmatieso.mwanzo.common.utils.Status;
 import com.gmatieso.mwanzo.common.utils.MemberType;
+import com.gmatieso.mwanzo.loans.entity.Guarantor;
 import com.gmatieso.mwanzo.loans.entity.Loan;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -33,6 +34,9 @@ public class Member {
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Loan> loan;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    private Guarantor guarantor;
 
 
     @Enumerated(EnumType.STRING)
