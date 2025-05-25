@@ -27,6 +27,9 @@ public class Member {
     @OneToMany( mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Contribution> contribution;
 
+    @OneToOne(mappedBy = "member")
+    private Share share;
+
 
     @Enumerated(EnumType.STRING)
     @Column(name = "member_type", nullable = false)
