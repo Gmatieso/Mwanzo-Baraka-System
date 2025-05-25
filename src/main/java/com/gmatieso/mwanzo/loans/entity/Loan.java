@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -38,5 +39,8 @@ public class Loan {
 
     @OneToMany(mappedBy = "loan", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private Guarantor guarantor;
+
+    @OneToMany(mappedBy = "loan")
+    private List<Penalty> penalty;
 
 }
