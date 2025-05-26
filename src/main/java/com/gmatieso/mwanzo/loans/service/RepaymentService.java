@@ -1,4 +1,4 @@
 package com.gmatieso.mwanzo.loans.service;
 
-public class RepaymentService {
+public interface RepaymentService {
 }
