@@ -1,4 +1,4 @@
 package com.gmatieso.mwanzo.membership.service;
 
-public class Member {
+public class MemberServiceImpl {
 }
