@@ -4,6 +4,7 @@ import com.gmatieso.mwanzo.common.utils.Status;
 import com.gmatieso.mwanzo.common.utils.MemberType;
 import com.gmatieso.mwanzo.loans.entity.Guarantor;
 import com.gmatieso.mwanzo.loans.entity.Loan;
+import com.gmatieso.mwanzo.security.entity.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,6 +32,9 @@ public class Member {
 
     @OneToOne(mappedBy = "member")
     private Share share;
+
+    @OneToOne(mappedBy = "member")
+    private User user;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Loan> loan;
