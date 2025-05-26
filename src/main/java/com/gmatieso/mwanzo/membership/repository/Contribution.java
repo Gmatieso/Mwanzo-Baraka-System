@@ -1,4 +1,6 @@
 package com.gmatieso.mwanzo.membership.repository;
 
-public interface Contribution {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface Contribution extends JpaRepository<Contribution, Long> {
 }
