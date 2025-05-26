@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/sare
+    username: mwanzo
+    password: mwanzo123
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    out-of-order: true
+    validate-on-migrate: false
+  jpa:
+    show-sql: false
+
+springdoc:
+  api-docs:
+    path: "/apidocs"

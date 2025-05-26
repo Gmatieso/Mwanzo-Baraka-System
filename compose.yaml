@@ -1,9 +1,35 @@
 services:
-  postgres:
-    image: 'postgres:latest'
-    environment:
-      - 'POSTGRES_DB=mydatabase'
-      - 'POSTGRES_PASSWORD=secret'
-      - 'POSTGRES_USER=myuser'
+
+  api:
+    container_name: "mwanzo"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    cpu_count: 1
+    cpuset: "0"
+    cpus: 1
+
     ports:
-      - '5432'
+      - "8081:8080"
+
+    environment:
+      DATABASE_USER: "mwanzo"
+      DATABASE_PASSWORD: "mwanzo123"
+      DATABASE_URL: "jdbc:postgresql://postgres-db/mwanzo"
+      FLYWAY_ENABLED: true
+
+    depends_on:
+      - postgres-db
+
+  postgres-db:
+    image: 'postgres:latest'
+    container_name: "postgres-mwanzo"
+    environment:
+       POSTGRES_DB: "mwanzo"
+       POSTGRES_PASSWORD: "mwanzo123"
+       POSTGRES_USER: "mwanzo"
+    restart: unless-stopped
+
+    ports:
+      - "5432:5432"
