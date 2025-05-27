@@ -25,6 +25,8 @@ services:
   postgres-db:
     image: 'postgres:latest'
     container_name: "postgres-mwanzo"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
     environment:
        POSTGRES_DB: "mwanzo"
        POSTGRES_PASSWORD: "mwanzo123"
@@ -33,3 +35,6 @@ services:
 
     ports:
       - "5432:5432"
+
+volumes:
+  postgres_data:
