@@ -1,4 +1,4 @@
 package com.gmatieso.mwanzo.membership.repository;
 
-public interface Share {
+public interface ShareRepository {
 }
