@@ -24,4 +24,9 @@ public class Repayment {
 
     @Column(name = "principal_paid")
     private BigDecimal principalPaid;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "loan_id")
+    private Loan loan;
 }
