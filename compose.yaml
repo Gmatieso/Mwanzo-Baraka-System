@@ -19,7 +19,7 @@ services:
     networks:
       - mwanzo_network
     volumes:
-      - ./application.yaml:/app/application.yaml:ro  # Dynamic config like sare
+      - ./application.yaml:/app/application.yaml:ro
   postgres-db:
     image: postgres:latest
     container_name: "postgres-mwanzo"
