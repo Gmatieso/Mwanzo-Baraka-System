@@ -1,40 +1,45 @@
+version: "3.9"
 services:
-
   api:
     container_name: "mwanzo"
     build:
       context: .
       dockerfile: Dockerfile
     restart: unless-stopped
-    cpu_count: 1
-    cpuset: "0"
-    cpus: 1
-
     ports:
       - "8081:8080"
-
     environment:
-      DATABASE_USER: "mwanzo"
-      DATABASE_PASSWORD: "mwanzo123"
-      DATABASE_URL: "jdbc:postgresql://postgres-db/mwanzo"
-      FLYWAY_ENABLED: "true"
-
+      DATABASE_USER: mwanzo
+      DATABASE_PASSWORD: mwanzo123
+      DATABASE_URL: jdbc:postgresql://postgres-db:5432/mwanzo
+      FLYWAY_ENABLED: true
     depends_on:
-      - postgres-db
-
+      postgres-db:
+        condition: service_healthy
+    networks:
+      - mwanzo_network
+    volumes:
+      - ./application.yaml:/app/application.yaml:ro  # Dynamic config like sare
   postgres-db:
-    image: 'postgres:latest'
+    image: postgres:latest
     container_name: "postgres-mwanzo"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
-       POSTGRES_DB: "mwanzo"
-       POSTGRES_PASSWORD: "mwanzo123"
-       POSTGRES_USER: "mwanzo"
+      POSTGRES_DB: mwanzo
+      POSTGRES_USER: mwanzo
+      POSTGRES_PASSWORD: mwanzo123
     restart: unless-stopped
-
     ports:
       - "5432:5432"
-
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mwanzo"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - mwanzo_network
+networks:
+  mwanzo_network:
 volumes:
   postgres_data:
