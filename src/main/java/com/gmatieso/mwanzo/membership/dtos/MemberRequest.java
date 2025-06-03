@@ -1,4 +1,4 @@
 package com.gmatieso.mwanzo.membership.dtos;
 
-public class MemberDtos {
+public record MemberRequest() {
 }
