@@ -16,5 +16,5 @@ public interface ContributionService {
 
    ResponseEntity<?> deleteContribution(Long id);
 
-   Contribution getContributionByIdorThrow(Long id);
+   Contribution getContributionByIdOrThrow(Long id);
 }
