@@ -8,5 +8,6 @@ public record PaginatedResponse<T>(List<T> content,
                                    long totalElements,
                                    int totalPages,
                                    boolean isLastPage
-                                   ) {
+                                   )
+{
 }
