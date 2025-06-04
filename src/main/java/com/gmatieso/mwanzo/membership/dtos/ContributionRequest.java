@@ -11,6 +11,6 @@ public record ContributionRequest(
         @NotEmpty BigDecimal amount,
         LocalDateTime contributionDate,
         BigDecimal groupShareAmount,
-        BigDecimal individualShareAmount
+        BigDecimal individualShareAmounta
 ) {
 }
