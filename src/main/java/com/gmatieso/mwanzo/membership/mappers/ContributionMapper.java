@@ -10,6 +10,6 @@ public interface ContributionMapper {
 
    Contribution toEntity(ContributionResponse contributionresponse);
 
-    @Mapping(source = "member.id", target = "memberId")
+    @Mapping(source = "member.id", target = "members")
     ContributionResponse toResponse(Contribution contribution);
 }

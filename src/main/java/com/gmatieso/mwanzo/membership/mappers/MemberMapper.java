@@ -10,10 +10,7 @@ public interface MemberMapper {
     Member toEntity(MemberResponse memberResponse);
 
 
-    @Mapping(source = "contribution.id", target = "contributionId")
-    @Mapping(source = "share.id", target = "shareId")
-    @Mapping(source = "user.id", target = "userId")
-    @Mapping(source = "loan.id", target = "loanId")
-    @Mapping(source = "guarantor.id", target = "guarantorId")
+    @Mapping(source = "contribution.id", target = "contribution")
+    @Mapping(source = "share.id", target = "share")
     MemberResponse toResponse(Member member);
 }
