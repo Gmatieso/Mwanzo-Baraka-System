@@ -1,4 +1,4 @@
-package com.gmatieso.mwanzo.common;
+package com.gmatieso.mwanzo.common.response;
 
 import java.util.List;
 

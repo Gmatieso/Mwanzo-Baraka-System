@@ -1,4 +1,4 @@
-package com.gmatieso.mwanzo.common;
+package com.gmatieso.mwanzo.common.response;
 
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
