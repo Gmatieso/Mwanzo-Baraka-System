@@ -8,9 +8,11 @@ import com.gmatieso.mwanzo.membership.mappers.MemberMapper;
 import com.gmatieso.mwanzo.membership.repository.MemberRepository;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
+@Service
 public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
     private final MemberMapper memberMapper;
