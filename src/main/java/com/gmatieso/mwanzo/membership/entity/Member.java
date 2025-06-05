@@ -63,5 +63,35 @@ public class Member {
     @Column(name = "exit_date")
     private LocalDateTime exitDate;
 
+   public String getName(){
+        return name;
+    }
 
+   public void  setName(String name){
+        this.name = name;
+    }
+
+    public MemberType getMemberType() {
+        return memberType;
+    }
+
+    public void setMemberType(MemberType memberType) {
+       this.memberType = memberType;
+    }
+
+    public LocalDateTime getRegistrationDate() {
+       return registrationDate;
+    }
+
+    public void setRegistrationDate(LocalDateTime registrationDate) {
+       this.registrationDate = registrationDate;
+    }
+
+    public BigDecimal getRegistrationFees() {
+       return registrationFees;
+    }
+
+    public void setRegistrationFees(BigDecimal registrationFees) {
+       this.registrationFees = registrationFees;
+    }
 }

@@ -6,6 +6,6 @@ public record MemberResponse(
         Long id,
         String name,
         List<ContributionResponse> contribution,
-        List<ShareResponse> share
+        ShareResponse share
 ) {
 }
