@@ -6,6 +6,7 @@ import com.gmatieso.mwanzo.membership.dtos.MemberResponse;
 import com.gmatieso.mwanzo.membership.entity.Member;
 import com.gmatieso.mwanzo.membership.mappers.MemberMapper;
 import com.gmatieso.mwanzo.membership.repository.MemberRepository;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -54,8 +55,12 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public ResponseEntity<?> getMembers(Pageable pageable) {
-        return null;
+    public ResponseEntity<?>                                                                                                                                                                                                                                                                                                                                        getMembers(Pageable pageable) {
+        Page<Member> membersPage = memberRepository.findAll(pageable);
+
+       Page<MemberResponse> responsePage =  membersPage.map(memberMapper::toResponse);
+
+       return ApiResponseEntity.success("Members retrieved successfully", responsePage);
     }
 
     @Override
