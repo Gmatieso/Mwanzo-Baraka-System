@@ -17,12 +17,11 @@ import java.time.LocalDateTime;
 public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
     private final MemberMapper memberMapper;
-    private final ContributionService contributionService;
 
-    public MemberServiceImpl(MemberRepository memberRepository, MemberMapper memberMapper, ContributionService contributionService) {
+
+    public MemberServiceImpl(MemberRepository memberRepository, MemberMapper memberMapper) {
         this.memberRepository = memberRepository;
         this.memberMapper = memberMapper;
-        this.contributionService = contributionService;
     }
 
     @Override
