@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/postgres}
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/mwanzo}
     username: ${DATABASE_USER:postgres}
     password: ${DATABASE_PASSWORD:mwanzo123}
   flyway:
@@ -12,7 +12,7 @@ spring:
     validate-on-migrate: true  # Enable to catch errors
     user: ${DATABASE_USER:postgres}
     password: ${DATABASE_PASSWORD:mwanzo123}
-    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/postgres}
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/mwanzo}
   jpa:
     show-sql: true
     hibernate:
