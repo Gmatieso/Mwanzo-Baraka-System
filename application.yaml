@@ -12,7 +12,7 @@ spring:
     validate-on-migrate: true  # Enable to catch errors
     user: ${DATABASE_USER}
     password: ${DATABASE_PASSWORD}
-    url: ${DATABASE_URL:jdbc:postgresql://localhost:54}
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432}
   jpa:
     show-sql: true
     hibernate:
