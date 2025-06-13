@@ -157,7 +157,7 @@
     <repositories>
         <repository>
             <id>spring-milestones</id>
-            <name>Spring Milestones</name>
+            <name>Spring Milestones</name>ls
             <url>https://repo.spring.io/milestone</url>
             <snapshots>
                 <enabled>false</enabled>
