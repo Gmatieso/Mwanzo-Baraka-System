@@ -33,6 +33,7 @@ public interface MemberMapper {
     @Mapping(source = "name", target = "name")
     @Mapping(source = "memberType", target = "memberType")
     @Mapping(source = "registrationFees", target = "registrationFees")
+    @Mapping(source = "status", target = "status")
     MemberResponseBasic toResponseBasic(Member member);
 
 
