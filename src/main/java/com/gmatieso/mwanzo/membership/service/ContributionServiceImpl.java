@@ -10,9 +10,10 @@ import com.gmatieso.mwanzo.membership.repository.ContributionRepository;
 import com.gmatieso.mwanzo.membership.repository.MemberRepository;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-
+@Service
 public class ContributionServiceImpl implements ContributionService {
 
     private final ContributionRepository contributionRepository;
