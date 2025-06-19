@@ -1,5 +1,6 @@
 package com.gmatieso.mwanzo.membership.service;
 
+import com.gmatieso.mwanzo.common.exception.ResourceNotFoundException;
 import com.gmatieso.mwanzo.common.response.ApiResponseEntity;
 import com.gmatieso.mwanzo.membership.dtos.MemberRequest;
 import com.gmatieso.mwanzo.membership.dtos.MemberResponse;
@@ -55,7 +56,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public ResponseEntity<?>                                                                                                                                                                                                                                                                                                                                        getMembers(Pageable pageable) {
+    public ResponseEntity<?>  getMembers(Pageable pageable) {
         Page<Member> membersPage = memberRepository.findAll(pageable);
 
        Page<MemberResponse> responsePage =  membersPage.map(memberMapper::toResponse);
@@ -65,6 +66,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public Member getMemberByIdOrThrow(Long id) {
-        return null;
+        return  memberRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Member with id"  + id + " not found"));
     }
 }
