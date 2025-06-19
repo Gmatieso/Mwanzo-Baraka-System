@@ -3,6 +3,7 @@ package com.gmatieso.mwanzo.membership.service;
 import com.gmatieso.mwanzo.common.response.ApiResponseEntity;
 import com.gmatieso.mwanzo.membership.dtos.MemberRequest;
 import com.gmatieso.mwanzo.membership.dtos.MemberResponse;
+import com.gmatieso.mwanzo.membership.dtos.MemberResponseBasic;
 import com.gmatieso.mwanzo.membership.entity.Member;
 import com.gmatieso.mwanzo.membership.mappers.MemberMapper;
 import com.gmatieso.mwanzo.membership.repository.MemberRepository;
@@ -34,7 +35,7 @@ public class MemberServiceImpl implements MemberService {
 
         Member savedMember = memberRepository.save(member);
 
-        MemberResponse response = memberMapper.toResponse(savedMember);
+        MemberResponseBasic response = memberMapper.toResponseBasic(savedMember);
         return ApiResponseEntity.success("Members created successfully", response);
     }
 

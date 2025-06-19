@@ -2,6 +2,7 @@ package com.gmatieso.mwanzo.membership.mappers;
 
 import com.gmatieso.mwanzo.membership.dtos.ContributionResponse;
 import com.gmatieso.mwanzo.membership.dtos.MemberResponse;
+import com.gmatieso.mwanzo.membership.dtos.MemberResponseBasic;
 import com.gmatieso.mwanzo.membership.dtos.ShareResponse;
 import com.gmatieso.mwanzo.membership.entity.Contribution;
 import com.gmatieso.mwanzo.membership.entity.Member;
@@ -25,6 +26,14 @@ public interface MemberMapper {
     @Mapping(source = "share", target = "share", qualifiedByName = "mapShare")
     @Mapping(source = "contribution", target = "contribution", qualifiedByName = "mapContributions")
     MemberResponse toResponse(Member member);
+
+    Member toEntity(MemberResponseBasic memberResponseBasic);
+
+    @Mapping(source = "id", target = "id")
+    @Mapping(source = "name", target = "name")
+    @Mapping(source = "memberType", target = "memberType")
+    @Mapping(source = "registrationFees", target = "registrationFees")
+    MemberResponseBasic toResponseBasic(Member member);
 
 
     @Named("mapContributions")
