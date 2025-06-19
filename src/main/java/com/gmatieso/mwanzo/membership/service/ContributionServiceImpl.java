@@ -1,22 +1,31 @@
 package com.gmatieso.mwanzo.membership.service;
 
+import com.gmatieso.mwanzo.common.response.ApiResponseEntity;
+import com.gmatieso.mwanzo.membership.dtos.ContributionBasicResponse;
 import com.gmatieso.mwanzo.membership.dtos.ContributionRequest;
 import com.gmatieso.mwanzo.membership.entity.Contribution;
+import com.gmatieso.mwanzo.membership.entity.Member;
 import com.gmatieso.mwanzo.membership.mappers.ContributionMapper;
 import com.gmatieso.mwanzo.membership.repository.ContributionRepository;
+import com.gmatieso.mwanzo.membership.repository.MemberRepository;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+
+import java.util.Optional;
 
 public class ContributionServiceImpl implements ContributionService {
 
     private final ContributionRepository contributionRepository;
     private final MemberService memberService;
     private final ContributionMapper contributionMapper;
+//    private final MemberRepository memberRepository;
+    private final MemberServiceImpl memberServiceImpl;
 
-    public ContributionServiceImpl(ContributionRepository contributionRepository, MemberService memberService, ContributionMapper contributionMapper) {
+    public ContributionServiceImpl(ContributionRepository contributionRepository, MemberService memberService, ContributionMapper contributionMapper, MemberServiceImpl memberServiceImpl) {
         this.contributionRepository = contributionRepository;
         this.memberService = memberService;
         this.contributionMapper = contributionMapper;
+        this.memberServiceImpl = memberServiceImpl;
     }
 
     @Override
@@ -31,9 +40,24 @@ public class ContributionServiceImpl implements ContributionService {
 
     @Override
     public ResponseEntity<?> createContribution(ContributionRequest request) {
-//        Contribution contribution = new Contribution();
-//        contribution.set
-        return null;
+
+        Long memberId = Long.parseLong(request.memberId());
+
+        Member member =   memberServiceImpl.getMemberByIdOrThrow(memberId);
+
+        Contribution contribution = new Contribution();
+        contribution.setAmount(request.amount());
+        contribution.setContributionDate(request.contributionDate());
+        contribution.setGroupShareAmount(request.groupShareAmount());
+        contribution.setIndividualShareAmount(request.individualShareAmount());
+        contribution.setMember(member);
+
+        Contribution savedContribution = contributionRepository.save(contribution);
+
+
+        ContributionBasicResponse response = contributionMapper.toBasicResponse(savedContribution);
+        return ApiResponseEntity.success("Contribution created successfully",response);
+
     }
 
     @Override
