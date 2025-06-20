@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController()
-@RequestMapping()
+@RequestMapping(Contribution.PATH)
 public class Contribution {
     public static final String PATH = ApiConfig.BASE_API_PATH + "contribution";
 
@@ -23,7 +23,7 @@ public class Contribution {
     }
 
     @PostMapping
-    public ResponseEntity<?> createContribution(@RequestBody @Valid ContributionRequest contributionRequest) {
+    public ResponseEntity<?> createContribution(@RequestBody  ContributionRequest contributionRequest) {
         return  contributionService.createContribution(contributionRequest);
     }
 }

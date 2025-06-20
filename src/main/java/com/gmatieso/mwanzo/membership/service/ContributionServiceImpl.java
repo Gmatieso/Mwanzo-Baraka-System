@@ -1,5 +1,6 @@
 package com.gmatieso.mwanzo.membership.service;
 
+import com.gmatieso.mwanzo.common.exception.BadRequestException;
 import com.gmatieso.mwanzo.common.exception.ResourceNotFoundException;
 import com.gmatieso.mwanzo.common.response.ApiResponseEntity;
 import com.gmatieso.mwanzo.common.utils.MemberType;
@@ -15,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Optional;
 @Service
 public class ContributionServiceImpl implements ContributionService {
@@ -49,11 +51,16 @@ public class ContributionServiceImpl implements ContributionService {
 
         Member member =   memberServiceImpl.getMemberByIdOrThrow(memberId);
 
+        minimumContribution(request);
+
+        validateGroupShareFourGroupMembers(request,member);
+
         Contribution contribution = new Contribution();
         contribution.setAmount(request.amount());
-        contribution.setContributionDate(request.contributionDate());
+        contribution.setContributionDate(request.contributionDate() != null ? request.contributionDate():LocalDateTime.now());
         contribution.setGroupShareAmount(request.groupShareAmount());
-        contribution.setIndividualShareAmount(request.individualShareAmount());
+        contribution.setIndividualShareAmount(request.individualShareAmount() != null ? request.individualShareAmount() :
+                request.groupShareAmount() != null ? request.amount().subtract(request.groupShareAmount()) : request.amount());
         contribution.setMember(member);
 
         Contribution savedContribution = contributionRepository.save(contribution);
@@ -82,7 +89,7 @@ public class ContributionServiceImpl implements ContributionService {
     private void minimumContribution(ContributionRequest request){
         BigDecimal minAmount = new BigDecimal("1000.00");
         if(request.amount().compareTo(minAmount) < 0) {
-            throw  new IllegalArgumentException("Contribution amount must be at least Ksh 1000");
+            throw  new BadRequestException("Contribution amount must be at least Ksh 1000");
         }
     }
 
@@ -91,15 +98,15 @@ public class ContributionServiceImpl implements ContributionService {
         if(member.getMemberType() == MemberType.GROUP){
            BigDecimal expectedGroupShare = new BigDecimal("200.00");
            if(request.groupShareAmount() == null || request.groupShareAmount().compareTo(expectedGroupShare) != 0){
-               throw new IllegalArgumentException("Group share must be Kshs. 200 for group members");
+               throw new BadRequestException("Group share must be Kshs. 200 for group members");
            }
             BigDecimal minAmount = new BigDecimal("1000.00");
             BigDecimal individualShare = request.amount().subtract(request.groupShareAmount());
             if (individualShare.compareTo(minAmount.subtract(expectedGroupShare)) < 0) {
-                throw new IllegalArgumentException("Individual share must be at least Kshs. 800 for group members");
+                throw new BadRequestException("Individual share must be at least Kshs. 800 for group members");
             }
         }else if (request.groupShareAmount() != null) {
-            throw new IllegalArgumentException("Group share amount is only applicable for group members");
+            throw new BadRequestException("Group share amount is only applicable for group members");
         }
     }
 }
