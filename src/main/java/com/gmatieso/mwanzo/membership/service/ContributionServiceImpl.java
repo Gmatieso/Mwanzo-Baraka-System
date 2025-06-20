@@ -1,6 +1,8 @@
 package com.gmatieso.mwanzo.membership.service;
 
+import com.gmatieso.mwanzo.common.exception.ResourceNotFoundException;
 import com.gmatieso.mwanzo.common.response.ApiResponseEntity;
+import com.gmatieso.mwanzo.common.utils.MemberType;
 import com.gmatieso.mwanzo.membership.dtos.ContributionBasicResponse;
 import com.gmatieso.mwanzo.membership.dtos.ContributionRequest;
 import com.gmatieso.mwanzo.membership.entity.Contribution;
@@ -12,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 @Service
 public class ContributionServiceImpl implements ContributionService {
@@ -74,5 +77,29 @@ public class ContributionServiceImpl implements ContributionService {
     @Override
     public Contribution getContributionByIdOrThrow(Long id) {
         return null;
+    }
+
+    private void minimumContribution(ContributionRequest request){
+        BigDecimal minAmount = new BigDecimal("1000.00");
+        if(request.amount().compareTo(minAmount) < 0) {
+            throw  new IllegalArgumentException("Contribution amount must be at least Ksh 1000");
+        }
+    }
+
+    private void validateGroupShareFourGroupMembers(ContributionRequest request, Member member){
+//        Member member = new Member();
+        if(member.getMemberType() == MemberType.GROUP){
+           BigDecimal expectedGroupShare = new BigDecimal("200.00");
+           if(request.groupShareAmount() == null || request.groupShareAmount().compareTo(expectedGroupShare) != 0){
+               throw new IllegalArgumentException("Group share must be Kshs. 200 for group members");
+           }
+            BigDecimal minAmount = new BigDecimal("1000.00");
+            BigDecimal individualShare = request.amount().subtract(request.groupShareAmount());
+            if (individualShare.compareTo(minAmount.subtract(expectedGroupShare)) < 0) {
+                throw new IllegalArgumentException("Individual share must be at least Kshs. 800 for group members");
+            }
+        }else if (request.groupShareAmount() != null) {
+            throw new IllegalArgumentException("Group share amount is only applicable for group members");
+        }
     }
 }
