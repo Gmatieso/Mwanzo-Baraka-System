@@ -25,13 +25,12 @@ public class ContributionServiceImpl implements ContributionService {
     private final MemberService memberService;
     private final ContributionMapper contributionMapper;
 //    private final MemberRepository memberRepository;
-    private final MemberServiceImpl memberServiceImpl;
+//    private final MemberServiceImpl memberServiceImpl;
 
-    public ContributionServiceImpl(ContributionRepository contributionRepository, MemberService memberService, ContributionMapper contributionMapper, MemberServiceImpl memberServiceImpl) {
+    public ContributionServiceImpl(ContributionRepository contributionRepository, MemberService memberService, ContributionMapper contributionMapper) {
         this.contributionRepository = contributionRepository;
         this.memberService = memberService;
         this.contributionMapper = contributionMapper;
-        this.memberServiceImpl = memberServiceImpl;
     }
 
     @Override
@@ -49,10 +48,10 @@ public class ContributionServiceImpl implements ContributionService {
 
         Long memberId = Long.parseLong(request.memberId());
 
-        Member member =   memberServiceImpl.getMemberByIdOrThrow(memberId);
+        Member member =   memberService.getMemberByIdOrThrow(memberId);
 
         minimumContribution(request);
-
+//
         validateGroupShareFourGroupMembers(request,member);
 
         Contribution contribution = new Contribution();
