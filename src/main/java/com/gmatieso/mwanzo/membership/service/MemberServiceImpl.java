@@ -59,7 +59,7 @@ public class MemberServiceImpl implements MemberService {
     public ResponseEntity<?>  getMembers(Pageable pageable) {
         Page<Member> membersPage = memberRepository.findAll(pageable);
 
-       Page<MemberResponse> responsePage =  membersPage.map(memberMapper::toResponse);
+       Page<MemberResponseBasic> responsePage =  membersPage.map(memberMapper::toResponseBasic);
 
        return ApiResponseEntity.success("Members retrieved successfully", responsePage);
     }

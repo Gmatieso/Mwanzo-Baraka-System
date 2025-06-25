@@ -7,6 +7,7 @@ spring:
     enabled: true
     locations: classpath:db/migration
     schemas: public
+#    repair: true
     baseline-on-migrate: true
     out-of-order: true
     validate-on-migrate: true  # Enable to catch errors
