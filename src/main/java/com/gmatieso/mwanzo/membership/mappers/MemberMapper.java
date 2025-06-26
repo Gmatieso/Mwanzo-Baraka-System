@@ -1,9 +1,6 @@
 package com.gmatieso.mwanzo.membership.mappers;
 
-import com.gmatieso.mwanzo.membership.dtos.ContributionResponse;
-import com.gmatieso.mwanzo.membership.dtos.MemberResponse;
-import com.gmatieso.mwanzo.membership.dtos.MemberResponseBasic;
-import com.gmatieso.mwanzo.membership.dtos.ShareResponse;
+import com.gmatieso.mwanzo.membership.dtos.*;
 import com.gmatieso.mwanzo.membership.entity.Contribution;
 import com.gmatieso.mwanzo.membership.entity.Member;
 import com.gmatieso.mwanzo.membership.entity.Share;
@@ -56,4 +53,12 @@ public interface MemberMapper {
     default ShareResponse mapShare(Share share) {
         return share != null ? new ShareResponse(share.getId(), share.getTotalShares(), null,share.getLastUpdated()) : null;
     }
+
+    // New method to map GroupMemberRequest to Member
+    @Mapping(source = "name", target = "name")
+    @Mapping(target = "memberType", constant = "INDIVIDUAL")
+    @Mapping(target = "registrationDate", ignore = true)
+    @Mapping(target = "registrationFees", ignore = true) // Group fee is handled by parent
+    Member toGroupMemberEntity(GroupMemberRequest groupMemberRequest);
+
 }
