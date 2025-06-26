@@ -11,6 +11,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -62,6 +63,14 @@ public class Member {
 
     @Column(name = "exit_date")
     private LocalDateTime exitDate;
+
+    @OneToMany(mappedBy = "parentMember", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Member> members = new ArrayList<>();
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_member_id")
+    private Member parentMember;
 
    public String getName(){
         return name;
