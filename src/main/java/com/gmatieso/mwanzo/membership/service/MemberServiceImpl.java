@@ -4,6 +4,7 @@ import com.gmatieso.mwanzo.common.exception.BadRequestException;
 import com.gmatieso.mwanzo.common.exception.ResourceNotFoundException;
 import com.gmatieso.mwanzo.common.response.ApiResponseEntity;
 import com.gmatieso.mwanzo.common.utils.MemberType;
+import com.gmatieso.mwanzo.membership.dtos.GroupMemberRequest;
 import com.gmatieso.mwanzo.membership.dtos.MemberRequest;
 import com.gmatieso.mwanzo.membership.dtos.MemberResponse;
 import com.gmatieso.mwanzo.membership.dtos.MemberResponseBasic;
@@ -17,6 +18,8 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.List;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -31,11 +34,22 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public ResponseEntity<?> createMember(MemberRequest memberRequest) {
+        validateRegistrationFees(memberRequest);
+
+        if(memberRequest.memberType() == MemberType.GROUP) {
+            validateGroupMembers(memberRequest.members());
+        }
+
         Member member = new Member();
         member.setName(memberRequest.name());
         member.setMemberType(memberRequest.memberType());
         member.setRegistrationDate(memberRequest.registrationDate() != null ? memberRequest.registrationDate() : LocalDateTime.now());
         member.setRegistrationFees(memberRequest.registrationFees());
+
+        //Handle group members
+        if(memberRequest.memberType() == MemberType.GROUP && memberRequest.members() != null){
+            //TODO: implement handling of group members here
+        }
 
         Member savedMember = memberRepository.save(member);
 
@@ -81,6 +95,16 @@ public class MemberServiceImpl implements MemberService {
         } else if (memberRequest.memberType() == MemberType.GROUP && memberRequest.registrationFees().compareTo(groupFee) != 0) {
             throw  new BadRequestException("Registration fee for group must be Kshs. 5000");
         }
+    }
 
+    private void validateGroupMembers(List<GroupMemberRequest> members){
+        if(members == null || members.size() < 2) {
+            throw new BadRequestException("Group must have at least two members");
+        }
+        for(GroupMemberRequest member: members){
+            if(member.name() == null || member.name().isEmpty()){
+                throw new BadRequestException("Each group member must have a name");
+            }
+        }
     }
 }
