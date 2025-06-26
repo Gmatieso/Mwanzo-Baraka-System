@@ -1,7 +1,9 @@
 package com.gmatieso.mwanzo.membership.service;
 
+import com.gmatieso.mwanzo.common.exception.BadRequestException;
 import com.gmatieso.mwanzo.common.exception.ResourceNotFoundException;
 import com.gmatieso.mwanzo.common.response.ApiResponseEntity;
+import com.gmatieso.mwanzo.common.utils.MemberType;
 import com.gmatieso.mwanzo.membership.dtos.MemberRequest;
 import com.gmatieso.mwanzo.membership.dtos.MemberResponse;
 import com.gmatieso.mwanzo.membership.dtos.MemberResponseBasic;
@@ -13,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Service
@@ -68,5 +71,16 @@ public class MemberServiceImpl implements MemberService {
     public Member getMemberByIdOrThrow(Long id) {
         return  memberRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Oops! Sorry ..Member with id"  +  " " + id  + " not found"));
+    }
+
+    private void validateRegistrationFees(MemberRequest memberRequest){
+        BigDecimal individualFee = new BigDecimal("2000.00");
+        BigDecimal groupFee = new BigDecimal("5000.00");
+        if (memberRequest.memberType() == MemberType.INDIVIDUAL && memberRequest.registrationFees().compareTo(individualFee) != 0){
+            throw new BadRequestException("Registration fee for individual must be Kshs. 2000");
+        } else if (memberRequest.memberType() == MemberType.GROUP && memberRequest.registrationFees().compareTo(groupFee) != 0) {
+            throw  new BadRequestException("Registration fee for group must be Kshs. 5000");
+        }
+
     }
 }
