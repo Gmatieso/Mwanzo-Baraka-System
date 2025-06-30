@@ -30,4 +30,9 @@ public class MemberController {
     public ResponseEntity<?> getMembers(Pageable pageable){
        return memberService.getMembers(pageable);
     }
+
+    @GetMapping("{id}")
+    public ResponseEntity<?> getMember( @PathVariable Long id){
+        return memberService.getMember(id);
+    }
 }

@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -55,7 +56,9 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public ResponseEntity<?> getMember(Long id) {
-        return null;
+        Member member = getMemberByIdOrThrow(id);
+        MemberResponseBasic response = memberMapper.toResponseBasic(member);
+        return ApiResponseEntity.success("Member retried successfully", response);
     }
 
     @Override
