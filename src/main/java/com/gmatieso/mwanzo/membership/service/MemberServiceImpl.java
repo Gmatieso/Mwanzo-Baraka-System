@@ -51,7 +51,9 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public ResponseEntity<?> deleteMember(Long id) {
-        return null;
+        Member member = getMemberByIdOrThrow(id);
+        memberRepository.delete(member);
+        return ApiResponseEntity.success("Member deleted successfully",null);
     }
 
     @Override

@@ -35,4 +35,14 @@ public class MemberController {
     public ResponseEntity<?> getMember( @PathVariable Long id){
         return memberService.getMember(id);
     }
+
+    @PutMapping("{id}")
+    public ResponseEntity<?> UpdateMember(@PathVariable Long id, @RequestBody MemberRequest memberRequest){
+        return  memberService.updateMember(id, memberRequest);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<?> deleteMember(@PathVariable Long id){
+        return memberService.deleteMember(id);
+    }
 }
