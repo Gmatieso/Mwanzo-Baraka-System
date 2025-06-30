@@ -46,7 +46,16 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public ResponseEntity<?> updateMember(Long id, MemberRequest memberRequest) {
-        return null;
+          Member member = getMemberByIdOrThrow(id);
+          member.setName(memberRequest.name());
+          member.setRegistrationFees(memberRequest.registrationFees());
+          member.setRegistrationDate(memberRequest.registrationDate() != null ? memberRequest.registrationDate(): member.getRegistrationDate());
+          member.setMemberType(memberRequest.memberType());
+
+          Member updatedMember = memberRepository.save(member);
+
+        MemberResponseBasic response =  memberMapper.toResponseBasic(updatedMember);
+        return ApiResponseEntity.success("Member updated successfully", response);
     }
 
     @Override
