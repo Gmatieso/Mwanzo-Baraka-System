@@ -69,7 +69,7 @@ public class MemberServiceImpl implements MemberService {
     public ResponseEntity<?> getMember(Long id) {
         Member member = getMemberByIdOrThrow(id);
         MemberResponseBasic response = memberMapper.toResponseBasic(member);
-        return ApiResponseEntity.success("Member retried successfully", response);
+        return ApiResponseEntity.success("Member retrieved successfully", response);
     }
 
     @Override

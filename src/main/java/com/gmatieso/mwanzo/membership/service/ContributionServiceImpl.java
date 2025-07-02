@@ -43,7 +43,9 @@ public class ContributionServiceImpl implements ContributionService {
 
     @Override
     public ResponseEntity<?> getContributionById(Long id) {
-        return null;
+        Contribution contribution = getContributionByIdOrThrow(id);
+        ContributionBasicResponse response = contributionMapper.toBasicResponse(contribution);
+        return ApiResponseEntity.success("Contribution retrieved successfully", response);
     }
 
     @Override
@@ -85,7 +87,8 @@ public class ContributionServiceImpl implements ContributionService {
 
     @Override
     public Contribution getContributionByIdOrThrow(Long id) {
-        return null;
+       return contributionRepository.findById(id)
+               .orElseThrow(() -> new ResourceNotFoundException("Oops! Sorry ...Contribution with id" + " " + " " + id + "not found"));
     }
 
     private void minimumContribution(ContributionRequest request){

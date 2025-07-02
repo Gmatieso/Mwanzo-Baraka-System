@@ -29,4 +29,9 @@ public class Contribution {
     public  ResponseEntity<?> getAllContribution(Pageable pageable){
         return  contributionService.getAllContribution(pageable);
     }
+
+    @GetMapping("{id}")
+    public ResponseEntity<?> getContributionById(@PathVariable Long id){
+        return  contributionService.getContributionById(id);
+    }
 }
