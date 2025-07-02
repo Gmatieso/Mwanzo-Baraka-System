@@ -11,6 +11,7 @@ import com.gmatieso.mwanzo.membership.entity.Member;
 import com.gmatieso.mwanzo.membership.mappers.ContributionMapper;
 import com.gmatieso.mwanzo.membership.repository.ContributionRepository;
 import com.gmatieso.mwanzo.membership.repository.MemberRepository;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -35,7 +36,9 @@ public class ContributionServiceImpl implements ContributionService {
 
     @Override
     public ResponseEntity<?> getAllContribution(Pageable pageable) {
-        return null;
+       Page<Contribution> contributionPage =  contributionRepository.findAll(pageable);
+       Page<ContributionBasicResponse>  responsePage = contributionPage.map(contributionMapper::toBasicResponse);
+        return ApiResponseEntity.success("Contributions retrieved successfully", responsePage);
     }
 
     @Override
