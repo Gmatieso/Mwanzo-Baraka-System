@@ -10,7 +10,10 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-@Table(name = "contribution")
+@Table(
+        name = "contribution",
+        uniqueConstraints= {@UniqueConstraint(columnNames = "member_id")}
+)
 public class Contribution {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
