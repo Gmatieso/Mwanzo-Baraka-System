@@ -55,7 +55,7 @@ public class ContributionServiceImpl implements ContributionService {
 
         Member member =   memberService.getMemberByIdOrThrow(memberId);
 
-        if (contributionRepository.existsByMemberId(member.getId())) {
+        if (contributionRepository.existsByMemberId(memberId)) {
             throw new BadRequestException("Sorry Contribution already made by this member. Only one contribution allowed.");
         }
 
