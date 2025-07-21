@@ -1,6 +1,10 @@
 package com.gmatieso.mwanzo.security.service;
 
+import com.gmatieso.mwanzo.common.exception.BadRequestException;
+import com.gmatieso.mwanzo.common.response.ApiResponseEntity;
 import com.gmatieso.mwanzo.security.dtos.UserRequest;
+import com.gmatieso.mwanzo.security.dtos.UserResponse;
+import com.gmatieso.mwanzo.security.entity.User;
 import com.gmatieso.mwanzo.security.mappers.UserMapper;
 import com.gmatieso.mwanzo.security.repository.UserRepository;
 import org.springframework.data.domain.Pageable;
@@ -11,19 +15,32 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService{
 
     private final UserRepository userRepository;
-    private final UserService userService;
     private final UserMapper userMapper;
 
-    public UserServiceImpl(UserRepository userRepository, UserService userService, UserMapper userMapper) {
+    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper) {
         this.userRepository = userRepository;
-        this.userService = userService;
         this.userMapper = userMapper;
     }
 
 
     @Override
     public ResponseEntity<?> createUser(UserRequest userRequest) {
-        return null;
+        //Check if email or phone already exist
+        if(userRepository.existsByEmail(userRequest.email())) {
+            throw  new BadRequestException("Sorry Email  is already taken!");
+        } else if (userRepository.existsByPhone(userRequest.phone())) {
+            throw  new BadRequestException("Sorry Phone number already taken!");
+        }
+        User user = new User();
+        user.setFirstName(userRequest.firstName());
+        user.setLastName(userRequest.lastName());
+        user.setEmail(userRequest.email());
+        user.setPhone(userRequest.phone());
+
+        User savedUser = userRepository.save(user);
+
+        UserResponse response = userMapper.toResponse(savedUser);
+        return ApiResponseEntity.success("User Created successfully", response);
     }
 
     @Override
