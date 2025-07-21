@@ -53,8 +53,7 @@ public class User {
     private String phone;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    @JoinColumn(name = "member_id")
-    private List<Member> member = new ArrayList<>();
+    private List<Member> members = new ArrayList<>();
 
     @NotBlank(message = "Username is required")
     @Column(name = "username", nullable = false, unique = true)
