@@ -32,10 +32,4 @@ public interface ContributionMapper {
     @Mapping(source = "individualShareAmount", target = "individualShareAmount")
     ContributionBasicResponse toBasicResponse(Contribution contribution);
 
-
-    @Named("mapMember")
-    default MemberResponse mapMember(Member member) {
-        return member != null ? new MemberResponse(member.getId(), member.getName(), null, null): null;
-    }
-
 }
