@@ -26,8 +26,8 @@ public class UserServiceImpl implements UserService{
     @Override
     public ResponseEntity<?> createUser(UserRequest userRequest) {
         //Check if email or phone already exist
-        if(userRepository.existsByEmail(userRequest.email())) {
-            throw  new BadRequestException("Sorry Email  is already taken!");
+        if (userRepository.existsByEmail(userRequest.email())) {
+            throw new BadRequestException("Sorry Email  is already taken!");
         } else if (userRepository.existsByPhone(userRequest.phone())) {
             throw  new BadRequestException("Sorry Phone number already taken!");
         }
