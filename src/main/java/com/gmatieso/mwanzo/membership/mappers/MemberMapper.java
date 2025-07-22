@@ -4,6 +4,8 @@ import com.gmatieso.mwanzo.membership.dtos.*;
 import com.gmatieso.mwanzo.membership.entity.Contribution;
 import com.gmatieso.mwanzo.membership.entity.Member;
 import com.gmatieso.mwanzo.membership.entity.Share;
+import com.gmatieso.mwanzo.security.dtos.UserResponse;
+import com.gmatieso.mwanzo.security.entity.User;
 import org.hibernate.annotations.Source;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -19,15 +21,14 @@ public interface MemberMapper {
     Member toEntity(MemberRequest memberRequest);
 
     @Mapping(source = "id", target = "id")
-    @Mapping(source = "name", target = "name")
     @Mapping(source = "share", target = "share", qualifiedByName = "mapShare")
     @Mapping(source = "contribution", target = "contribution", qualifiedByName = "mapContributions")
+    @Mapping(source = "user", target = "user", qualifiedByName = "mapUsers")
     MemberResponse toResponse(Member member);
 
 //    Member toEntity(MemberResponseBasic memberResponseBasic);
 
     @Mapping(source = "id", target = "id")
-    @Mapping(source = "name", target = "name")
     @Mapping(source = "memberType", target = "memberType")
     @Mapping(source = "registrationFees", target = "registrationFees")
     @Mapping(source = "status", target = "status")
@@ -52,5 +53,10 @@ public interface MemberMapper {
     @Named("mapShare")
     default ShareResponse mapShare(Share share) {
         return share != null ? new ShareResponse(share.getId(), share.getTotalShares(), null,share.getLastUpdated()) : null;
+    }
+
+    @Named("mapUsers")
+    default UserResponse mapUsers(User user){
+        return user != null ? new UserResponse(user.getId(), user.getFirstName(),user.getLastName(), user.getEmail(),user.getPhone(),null,user.getUsername()): null;
     }
 }
