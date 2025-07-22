@@ -7,7 +7,6 @@ import java.math.BigDecimal;
 
 public record MemberResponseBasic(
         Long id,
-        String name,
         MemberType memberType,
         BigDecimal registrationFees,
         Status status

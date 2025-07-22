@@ -30,7 +30,6 @@ public interface UserMapper {
         return members != null ? members.stream()
                 .map(member -> new MemberResponseBasic(
                         member.getId(),
-                        member.getName(),
                         member.getMemberType(),
                         member.getRegistrationFees(),
                         member.getStatus()
