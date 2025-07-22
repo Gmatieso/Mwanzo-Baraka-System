@@ -1,6 +1,7 @@
 package com.gmatieso.mwanzo.membership.mappers;
 
 import com.gmatieso.mwanzo.membership.dtos.ContributionBasicResponse;
+import com.gmatieso.mwanzo.membership.dtos.ContributionRequest;
 import com.gmatieso.mwanzo.membership.dtos.ContributionResponse;
 import com.gmatieso.mwanzo.membership.dtos.MemberResponse;
 import com.gmatieso.mwanzo.membership.entity.Contribution;
@@ -14,7 +15,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface ContributionMapper {
 
-   Contribution toEntity(ContributionResponse contributionresponse);
+   Contribution toEntity(ContributionRequest contributionRequest);
 
     @Mapping(source = "id", target = "id")
     @Mapping(source = "contributionDate", target = "contributionDate")

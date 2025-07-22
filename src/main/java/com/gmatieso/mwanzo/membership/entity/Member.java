@@ -33,7 +33,8 @@ public class Member {
     @OneToOne(mappedBy = "member")
     private Share share;
 
-    @OneToOne(mappedBy = "member", fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)

@@ -1,9 +1,6 @@
 package com.gmatieso.mwanzo.membership.mappers;
 
-import com.gmatieso.mwanzo.membership.dtos.ContributionResponse;
-import com.gmatieso.mwanzo.membership.dtos.MemberResponse;
-import com.gmatieso.mwanzo.membership.dtos.MemberResponseBasic;
-import com.gmatieso.mwanzo.membership.dtos.ShareResponse;
+import com.gmatieso.mwanzo.membership.dtos.*;
 import com.gmatieso.mwanzo.membership.entity.Contribution;
 import com.gmatieso.mwanzo.membership.entity.Member;
 import com.gmatieso.mwanzo.membership.entity.Share;
@@ -19,7 +16,7 @@ import java.util.stream.Collectors;
 @Mapper(componentModel = "spring")
 public interface MemberMapper {
 
-    Member toEntity(MemberResponse memberResponse);
+    Member toEntity(MemberRequest memberRequest);
 
     @Mapping(source = "id", target = "id")
     @Mapping(source = "name", target = "name")
@@ -27,7 +24,7 @@ public interface MemberMapper {
     @Mapping(source = "contribution", target = "contribution", qualifiedByName = "mapContributions")
     MemberResponse toResponse(Member member);
 
-    Member toEntity(MemberResponseBasic memberResponseBasic);
+//    Member toEntity(MemberResponseBasic memberResponseBasic);
 
     @Mapping(source = "id", target = "id")
     @Mapping(source = "name", target = "name")
