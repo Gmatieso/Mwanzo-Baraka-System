@@ -30,36 +30,26 @@ public class User {
     @Column(name = "user_id", nullable = false)
     private Long id;
 
-    @NotBlank(message = "First name is required")
+
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
-
-    @NotBlank(message = "Last name is required")
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @NotBlank(message = "Email is required")
-    @Email(message = "Email must be valid")
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @NotBlank(message = "Phone number is required")
-    @Size(min = 10, max = 15, message = "Phone number Must be between 10 and 15 digits")
-    @Pattern(
-            regexp = "^[0-9+\\-() ]+$",
-            message = "Phone number can only contain digits, +, -, spaces, or parentheses"
-    )
     private String phone;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Member> members = new ArrayList<>();
 
-    @NotBlank(message = "Username is required")
+
     @Column(name = "username", nullable = false, unique = true)
     private String username;
 
-    @NotBlank(message = "Password is required")
+
     @Column(name = "password", nullable = false)
     private String password;
 

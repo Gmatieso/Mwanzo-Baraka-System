@@ -2,6 +2,7 @@ package com.gmatieso.mwanzo.security.mappers;
 
 import com.gmatieso.mwanzo.membership.dtos.MemberResponseBasic;
 import com.gmatieso.mwanzo.membership.entity.Member;
+import com.gmatieso.mwanzo.security.dtos.UserRequest;
 import com.gmatieso.mwanzo.security.dtos.UserResponse;
 import com.gmatieso.mwanzo.security.entity.User;
 import org.mapstruct.Mapper;
@@ -14,7 +15,7 @@ import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
-    User toEntity(UserResponse userResponseBasic);
+    User toEntity(UserRequest userRequest);
 
     @Mapping(source = "id", target = "id")
     @Mapping(source = "firstName", target = "firstName")
