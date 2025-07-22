@@ -1,18 +1,19 @@
 package com.gmatieso.mwanzo.security.service;
 
 import com.gmatieso.mwanzo.security.dtos.UserRequest;
+import com.gmatieso.mwanzo.security.dtos.UserResponse;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 
 public interface UserService {
-    ResponseEntity<?> createUser(UserRequest userRequest);
+   UserResponse createUser(UserRequest userRequest);
 
-    ResponseEntity<?> updateUser(Long id, UserRequest userRequest);
+   UserResponse updateUser(Long id, UserRequest userRequest);
 
-    ResponseEntity<?> deleteUser(Long id);
+   void deleteUser(Long id);
 
-    ResponseEntity<?> getUsers(Pageable pageable);
+   Page<UserResponse> getUsers(Pageable pageable);
 
-    ResponseEntity<?> getUser(Long id);
-
+    UserResponse getUser(Long id);
 }

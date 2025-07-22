@@ -1,9 +1,12 @@
 package com.gmatieso.mwanzo.security.controller;
 
 import com.gmatieso.mwanzo.common.config.ApiConfig;
+import com.gmatieso.mwanzo.common.response.ApiResponseEntity;
 import com.gmatieso.mwanzo.security.dtos.UserRequest;
+import com.gmatieso.mwanzo.security.dtos.UserResponse;
 import com.gmatieso.mwanzo.security.service.UserService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +26,7 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<?> createUser(@Valid @RequestBody UserRequest userRequest){
-        return userService.createUser(userRequest);
+        UserResponse response = userService.createUser(userRequest);
+        return ApiResponseEntity.success("User created successfully", response);
     }
 }
