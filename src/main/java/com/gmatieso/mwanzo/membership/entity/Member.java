@@ -23,8 +23,8 @@ public class Member {
     @Column(name = "member_id", nullable = false)
     private Long id;
 
-    @Column(name = "members_name", nullable = false)
-    private String name;
+//    @Column(name = "members_name", nullable = false)
+//    private String name;
 
     @Column(name = "contribution_id")
     @OneToMany( mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
@@ -63,14 +63,6 @@ public class Member {
 
     @Column(name = "exit_date")
     private LocalDateTime exitDate;
-
-   public String getName(){
-        return name;
-    }
-
-   public void  setName(String name){
-        this.name = name;
-    }
 
     public MemberType getMemberType() {
         return memberType;

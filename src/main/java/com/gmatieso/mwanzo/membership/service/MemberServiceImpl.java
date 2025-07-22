@@ -33,7 +33,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public ResponseEntity<?> createMember(MemberRequest memberRequest) {
         Member member = new Member();
-        member.setName(memberRequest.name());
+        member.setId(memberRequest.user_id());
         member.setMemberType(memberRequest.memberType());
         member.setRegistrationDate(memberRequest.registrationDate() != null ? memberRequest.registrationDate() : LocalDateTime.now());
         member.setRegistrationFees(memberRequest.registrationFees());
@@ -47,7 +47,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public ResponseEntity<?> updateMember(Long id, MemberRequest memberRequest) {
           Member member = getMemberByIdOrThrow(id);
-          member.setName(memberRequest.name());
+          member.setId(memberRequest.user_id());
           member.setRegistrationFees(memberRequest.registrationFees());
           member.setRegistrationDate(memberRequest.registrationDate() != null ? memberRequest.registrationDate(): member.getRegistrationDate());
           member.setMemberType(memberRequest.memberType());
