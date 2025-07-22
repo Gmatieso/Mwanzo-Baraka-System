@@ -31,11 +31,14 @@ public class UserServiceImpl implements UserService{
         } else if (userRepository.existsByPhone(userRequest.phone())) {
             throw  new BadRequestException("Sorry Phone number already taken!");
         }
+
         User user = new User();
         user.setFirstName(userRequest.firstName());
         user.setLastName(userRequest.lastName());
         user.setEmail(userRequest.email());
         user.setPhone(userRequest.phone());
+        user.setUsername(userRequest.username());
+        user.setPassword(userRequest.password());
 
         User savedUser = userRepository.save(user);
 
