@@ -1,6 +1,7 @@
 package com.gmatieso.mwanzo.security.service;
 
 import com.gmatieso.mwanzo.common.exception.BadRequestException;
+import com.gmatieso.mwanzo.common.exception.ResourceNotFoundException;
 import com.gmatieso.mwanzo.common.response.ApiResponseEntity;
 import com.gmatieso.mwanzo.security.dtos.UserRequest;
 import com.gmatieso.mwanzo.security.dtos.UserResponse;
@@ -66,5 +67,11 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserResponse getUser(Long id) {
         return null;
+    }
+
+    @Override
+    public User getUserByIdOrThrow(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Oops! ..User with id" + " " + id + "not found"));
     }
 }
