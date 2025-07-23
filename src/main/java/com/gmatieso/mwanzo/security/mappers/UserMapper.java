@@ -31,6 +31,7 @@ public interface UserMapper {
                 .map(member -> new MemberResponseBasic(
                         member.getId(),
                         member.getMemberType(),
+                        null,
                         member.getRegistrationFees(),
                         member.getStatus()
                 ))
