@@ -10,6 +10,8 @@ import com.gmatieso.mwanzo.membership.dtos.MemberResponseBasic;
 import com.gmatieso.mwanzo.membership.entity.Member;
 import com.gmatieso.mwanzo.membership.mappers.MemberMapper;
 import com.gmatieso.mwanzo.membership.repository.MemberRepository;
+import com.gmatieso.mwanzo.security.entity.User;
+import com.gmatieso.mwanzo.security.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -23,17 +25,23 @@ import java.util.Optional;
 public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
     private final MemberMapper memberMapper;
+    private final UserService userService;
 
 
-    public MemberServiceImpl(MemberRepository memberRepository, MemberMapper memberMapper) {
+    public MemberServiceImpl(MemberRepository memberRepository, MemberMapper memberMapper, UserService userService) {
         this.memberRepository = memberRepository;
         this.memberMapper = memberMapper;
+        this.userService = userService;
     }
 
     @Override
     public ResponseEntity<?> createMember(MemberRequest memberRequest) {
+
+        Long userId = memberRequest.user_id();
+        User user = userService.getUserByIdOrThrow(userId);
+
         Member member = new Member();
-        member.setId(memberRequest.user_id());
+        member.setUser(user);
         member.setMemberType(memberRequest.memberType());
         member.setRegistrationDate(memberRequest.registrationDate() != null ? memberRequest.registrationDate() : LocalDateTime.now());
         member.setRegistrationFees(memberRequest.registrationFees());
