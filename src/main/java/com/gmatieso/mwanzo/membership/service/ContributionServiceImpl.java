@@ -10,7 +10,6 @@ import com.gmatieso.mwanzo.membership.entity.Contribution;
 import com.gmatieso.mwanzo.membership.entity.Member;
 import com.gmatieso.mwanzo.membership.mappers.ContributionMapper;
 import com.gmatieso.mwanzo.membership.repository.ContributionRepository;
-import com.gmatieso.mwanzo.membership.repository.MemberRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -18,15 +17,13 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Optional;
 @Service
 public class ContributionServiceImpl implements ContributionService {
 
     private final ContributionRepository contributionRepository;
     private final MemberService memberService;
     private final ContributionMapper contributionMapper;
-//    private final MemberRepository memberRepository;
-//    private final MemberServiceImpl memberServiceImpl;
+
 
     public ContributionServiceImpl(ContributionRepository contributionRepository, MemberService memberService, ContributionMapper contributionMapper) {
         this.contributionRepository = contributionRepository;
