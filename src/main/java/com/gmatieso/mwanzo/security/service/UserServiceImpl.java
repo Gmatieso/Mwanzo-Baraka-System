@@ -58,7 +58,9 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public Page<UserResponse> getUsers(Pageable pageable) {
-        return null;
+        Page<User> usersPage  = userRepository.findAll(pageable);
+        Page<UserResponse> responsePage = usersPage.map(userMapper::toResponse);
+        return responsePage;
     }
 
     @Override

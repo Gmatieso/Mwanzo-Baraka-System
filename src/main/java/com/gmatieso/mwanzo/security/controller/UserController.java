@@ -6,12 +6,10 @@ import com.gmatieso.mwanzo.security.dtos.UserRequest;
 import com.gmatieso.mwanzo.security.dtos.UserResponse;
 import com.gmatieso.mwanzo.security.service.UserService;
 import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController()
 @RequestMapping(UserController.PATH)
@@ -28,5 +26,11 @@ public class UserController {
     public ResponseEntity<?> createUser(@Valid @RequestBody UserRequest userRequest){
         UserResponse response = userService.createUser(userRequest);
         return ApiResponseEntity.success("User created successfully", response);
+    }
+
+    @GetMapping
+    public ResponseEntity<?> getUsers(Pageable pageable){
+       Page<UserResponse> response =  userService.getUsers(pageable);
+       return ApiResponseEntity.success("Users retrieved successfully", response);
     }
 }
