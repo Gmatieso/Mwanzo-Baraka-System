@@ -57,6 +57,6 @@ public interface MemberMapper {
 
     @Named("mapUsers")
     default UserResponse mapUsers(User user){
-        return user != null ? new UserResponse(user.getId(), user.getFirstName(),user.getLastName(), user.getEmail(),user.getPhone(),null,user.getUsername()): null;
+        return user != null ? new UserResponse(user.getId(), user.getFirstName(),user.getLastName(), user.getEmail(),user.getPhone(),user.getUsername()): null;
     }
 }
