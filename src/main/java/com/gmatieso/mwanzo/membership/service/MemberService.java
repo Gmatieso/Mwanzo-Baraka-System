@@ -1,20 +1,21 @@
 package com.gmatieso.mwanzo.membership.service;
 
 import com.gmatieso.mwanzo.membership.dtos.MemberRequest;
+import com.gmatieso.mwanzo.membership.dtos.MemberResponseBasic;
 import com.gmatieso.mwanzo.membership.entity.Member;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 
 public interface MemberService {
-    ResponseEntity<?> createMember(MemberRequest memberRequest);
+    MemberResponseBasic createMember(MemberRequest memberRequest);
 
-    ResponseEntity<?> updateMember(Long id, MemberRequest memberRequest);
+    MemberResponseBasic updateMember(Long id, MemberRequest memberRequest);
 
-    ResponseEntity<?> deleteMember(Long id);
+    void deleteMember(Long id);
 
-    ResponseEntity<?> getMember(Long id);
+    MemberResponseBasic getMember(Long id);
 
-    ResponseEntity<?> getMembers(Pageable pageable);
+    MemberResponseBasic getMembers(Pageable pageable);
 
     Member getMemberByIdOrThrow(Long id);
 }
