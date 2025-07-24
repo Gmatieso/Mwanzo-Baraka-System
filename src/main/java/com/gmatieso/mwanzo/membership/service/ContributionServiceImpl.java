@@ -5,6 +5,7 @@ import com.gmatieso.mwanzo.common.exception.ResourceNotFoundException;
 import com.gmatieso.mwanzo.common.utils.MemberType;
 import com.gmatieso.mwanzo.membership.dtos.ContributionBasicResponse;
 import com.gmatieso.mwanzo.membership.dtos.ContributionRequest;
+import com.gmatieso.mwanzo.membership.dtos.ContributionResponse;
 import com.gmatieso.mwanzo.membership.entity.Contribution;
 import com.gmatieso.mwanzo.membership.entity.Member;
 import com.gmatieso.mwanzo.membership.mappers.ContributionMapper;
@@ -30,9 +31,9 @@ public class ContributionServiceImpl implements ContributionService {
     }
 
     @Override
-    public Page<ContributionBasicResponse> getAllContribution(Pageable pageable) {
+    public Page<ContributionResponse> getAllContribution(Pageable pageable) {
        Page<Contribution> contributionPage =  contributionRepository.findAll(pageable);
-         return contributionPage.map(contributionMapper::toBasicResponse);
+         return contributionPage.map(contributionMapper::toResponse);
     }
 
     @Override
@@ -42,7 +43,7 @@ public class ContributionServiceImpl implements ContributionService {
     }
 
     @Override
-    public ContributionBasicResponse createContribution(ContributionRequest request) {
+    public ContributionResponse createContribution(ContributionRequest request) {
 
         Long memberId = Long.parseLong(request.memberId());
 
@@ -66,7 +67,7 @@ public class ContributionServiceImpl implements ContributionService {
 
         Contribution savedContribution = contributionRepository.save(contribution);
 
-         return contributionMapper.toBasicResponse(savedContribution);
+         return contributionMapper.toResponse(savedContribution);
     }
 
     @Override
