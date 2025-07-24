@@ -53,7 +53,7 @@ public class ContributionServiceImpl implements ContributionService {
         Member member =   memberService.getMemberByIdOrThrow(memberId);
 
         if (contributionRepository.existsByMemberId(memberId)) {
-            throw new BadRequestException("Sorry Contribution already made by this member. Only one contribution allowed.");
+            throw new BadRequestException("Contribution already made by this member. Only one contribution allowed.");
         }
 
         minimumContribution(request);
@@ -89,7 +89,7 @@ public class ContributionServiceImpl implements ContributionService {
     @Override
     public Contribution getContributionByIdOrThrow(Long id) {
        return contributionRepository.findById(id)
-               .orElseThrow(() -> new ResourceNotFoundException("Oops! Sorry ...Contribution with id" + " " + " " + id + "not found"));
+               .orElseThrow(() -> new ResourceNotFoundException("Contribution with id" + " " + " " + id + "not found"));
     }
 
     private void minimumContribution(ContributionRequest request){
