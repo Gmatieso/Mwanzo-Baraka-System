@@ -35,7 +35,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public ResponseEntity<?> createMember(MemberRequest memberRequest) {
+    public MemberResponseBasic createMember(MemberRequest memberRequest) {
 
         Long userId = memberRequest.user_id();
         User user = userService.getUserByIdOrThrow(userId);
@@ -48,12 +48,11 @@ public class MemberServiceImpl implements MemberService {
 
         Member savedMember = memberRepository.save(member);
 
-        MemberResponseBasic response = memberMapper.toResponseBasic(savedMember);
-        return ApiResponseEntity.success("Members created successfully", response);
+       return memberMapper.toResponseBasic(savedMember);
     }
 
     @Override
-    public ResponseEntity<?> updateMember(Long id, MemberRequest memberRequest) {
+    public MemberResponseBasic updateMember(Long id, MemberRequest memberRequest) {
           Member member = getMemberByIdOrThrow(id);
           member.setId(memberRequest.user_id());
           member.setRegistrationFees(memberRequest.registrationFees());
@@ -62,31 +61,25 @@ public class MemberServiceImpl implements MemberService {
 
           Member updatedMember = memberRepository.save(member);
 
-        MemberResponseBasic response =  memberMapper.toResponseBasic(updatedMember);
-        return ApiResponseEntity.success("Member updated successfully", response);
+         return memberMapper.toResponseBasic(updatedMember);
     }
 
     @Override
-    public ResponseEntity<?> deleteMember(Long id) {
+    public void deleteMember(Long id) {
         Member member = getMemberByIdOrThrow(id);
-        memberRepository.delete(member);
-        return ApiResponseEntity.success("Member deleted successfully",null);
+         memberRepository.delete(member);
     }
 
     @Override
-    public ResponseEntity<?> getMember(Long id) {
+    public MemberResponseBasic getMember(Long id) {
         Member member = getMemberByIdOrThrow(id);
-        MemberResponseBasic response = memberMapper.toResponseBasic(member);
-        return ApiResponseEntity.success("Member retrieved successfully", response);
+        return memberMapper.toResponseBasic(member);
     }
 
     @Override
-    public ResponseEntity<?>  getMembers(Pageable pageable) {
+    public Page<MemberResponseBasic>  getMembers(Pageable pageable) {
         Page<Member> membersPage = memberRepository.findAll(pageable);
-
-       Page<MemberResponseBasic> responsePage =  membersPage.map(memberMapper::toResponseBasic);
-
-       return ApiResponseEntity.success("Members retrieved successfully", responsePage);
+        return   membersPage.map(memberMapper::toResponseBasic);
     }
 
     @Override
