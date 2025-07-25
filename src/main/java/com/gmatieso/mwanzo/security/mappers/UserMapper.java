@@ -22,7 +22,7 @@ public interface UserMapper {
     @Mapping(source = "lastName", target = "lastName")
     @Mapping(source = "email", target = "email")
     @Mapping(source = "phone", target = "phone")
-    @Mapping(source = "members", target = "members", qualifiedByName = "mapMembers")
+//    @Mapping(source = "members", target = "members", qualifiedByName = "mapMembers")
     UserResponse toResponse(User user);
 
     @Named("mapMembers")
@@ -30,8 +30,8 @@ public interface UserMapper {
         return members != null ? members.stream()
                 .map(member -> new MemberResponseBasic(
                         member.getId(),
-                        member.getName(),
                         member.getMemberType(),
+                        null,
                         member.getRegistrationFees(),
                         member.getStatus()
                 ))

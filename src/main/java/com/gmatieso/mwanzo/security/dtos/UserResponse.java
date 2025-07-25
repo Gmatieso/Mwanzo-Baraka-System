@@ -11,6 +11,6 @@ public record UserResponse(
         String lastName,
         String email,
         String phone,
-        List<MemberResponseBasic> members,
+//        List<MemberResponseBasic> members,
         String username) {
 }

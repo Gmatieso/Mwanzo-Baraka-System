@@ -10,6 +10,8 @@ import com.gmatieso.mwanzo.membership.dtos.MemberResponseBasic;
 import com.gmatieso.mwanzo.membership.entity.Member;
 import com.gmatieso.mwanzo.membership.mappers.MemberMapper;
 import com.gmatieso.mwanzo.membership.repository.MemberRepository;
+import com.gmatieso.mwanzo.security.entity.User;
+import com.gmatieso.mwanzo.security.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -23,68 +25,67 @@ import java.util.Optional;
 public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
     private final MemberMapper memberMapper;
+    private final UserService userService;
 
 
-    public MemberServiceImpl(MemberRepository memberRepository, MemberMapper memberMapper) {
+    public MemberServiceImpl(MemberRepository memberRepository, MemberMapper memberMapper, UserService userService) {
         this.memberRepository = memberRepository;
         this.memberMapper = memberMapper;
+        this.userService = userService;
     }
 
     @Override
-    public ResponseEntity<?> createMember(MemberRequest memberRequest) {
+    public MemberResponseBasic createMember(MemberRequest memberRequest) {
+
+        Long userId = memberRequest.user_id();
+        User user = userService.getUserByIdOrThrow(userId);
+
         Member member = new Member();
-        member.setName(memberRequest.name());
+        member.setUser(user);
         member.setMemberType(memberRequest.memberType());
         member.setRegistrationDate(memberRequest.registrationDate() != null ? memberRequest.registrationDate() : LocalDateTime.now());
         member.setRegistrationFees(memberRequest.registrationFees());
 
         Member savedMember = memberRepository.save(member);
 
-        MemberResponseBasic response = memberMapper.toResponseBasic(savedMember);
-        return ApiResponseEntity.success("Members created successfully", response);
+       return memberMapper.toResponseBasic(savedMember);
     }
 
     @Override
-    public ResponseEntity<?> updateMember(Long id, MemberRequest memberRequest) {
+    public MemberResponseBasic updateMember(Long id, MemberRequest memberRequest) {
           Member member = getMemberByIdOrThrow(id);
-          member.setName(memberRequest.name());
+          member.setId(memberRequest.user_id());
           member.setRegistrationFees(memberRequest.registrationFees());
           member.setRegistrationDate(memberRequest.registrationDate() != null ? memberRequest.registrationDate(): member.getRegistrationDate());
           member.setMemberType(memberRequest.memberType());
 
           Member updatedMember = memberRepository.save(member);
 
-        MemberResponseBasic response =  memberMapper.toResponseBasic(updatedMember);
-        return ApiResponseEntity.success("Member updated successfully", response);
+         return memberMapper.toResponseBasic(updatedMember);
     }
 
     @Override
-    public ResponseEntity<?> deleteMember(Long id) {
+    public void deleteMember(Long id) {
         Member member = getMemberByIdOrThrow(id);
-        memberRepository.delete(member);
-        return ApiResponseEntity.success("Member deleted successfully",null);
+         memberRepository.delete(member);
     }
 
     @Override
-    public ResponseEntity<?> getMember(Long id) {
+    public MemberResponseBasic getMember(Long id) {
         Member member = getMemberByIdOrThrow(id);
-        MemberResponseBasic response = memberMapper.toResponseBasic(member);
-        return ApiResponseEntity.success("Member retrieved successfully", response);
+        return memberMapper.toResponseBasic(member);
     }
 
     @Override
-    public ResponseEntity<?>  getMembers(Pageable pageable) {
+    public Page<MemberResponseBasic>  getMembers(Pageable pageable) {
         Page<Member> membersPage = memberRepository.findAll(pageable);
-
-       Page<MemberResponseBasic> responsePage =  membersPage.map(memberMapper::toResponseBasic);
-
-       return ApiResponseEntity.success("Members retrieved successfully", responsePage);
+        return   membersPage.map(memberMapper::toResponseBasic);
     }
 
     @Override
     public Member getMemberByIdOrThrow(Long id) {
         return  memberRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Oops! Sorry ..Member with id"  +  " " + id  + " not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Member with id"  +  " " + id  + " not found"));
     }
 
     private void validateRegistrationFees(MemberRequest memberRequest){

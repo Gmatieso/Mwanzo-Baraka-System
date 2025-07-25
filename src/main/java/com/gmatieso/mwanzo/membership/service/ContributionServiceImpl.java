@@ -2,31 +2,27 @@ package com.gmatieso.mwanzo.membership.service;
 
 import com.gmatieso.mwanzo.common.exception.BadRequestException;
 import com.gmatieso.mwanzo.common.exception.ResourceNotFoundException;
-import com.gmatieso.mwanzo.common.response.ApiResponseEntity;
 import com.gmatieso.mwanzo.common.utils.MemberType;
 import com.gmatieso.mwanzo.membership.dtos.ContributionBasicResponse;
 import com.gmatieso.mwanzo.membership.dtos.ContributionRequest;
+import com.gmatieso.mwanzo.membership.dtos.ContributionResponse;
 import com.gmatieso.mwanzo.membership.entity.Contribution;
 import com.gmatieso.mwanzo.membership.entity.Member;
 import com.gmatieso.mwanzo.membership.mappers.ContributionMapper;
 import com.gmatieso.mwanzo.membership.repository.ContributionRepository;
-import com.gmatieso.mwanzo.membership.repository.MemberRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Optional;
 @Service
 public class ContributionServiceImpl implements ContributionService {
 
     private final ContributionRepository contributionRepository;
     private final MemberService memberService;
     private final ContributionMapper contributionMapper;
-//    private final MemberRepository memberRepository;
-//    private final MemberServiceImpl memberServiceImpl;
+
 
     public ContributionServiceImpl(ContributionRepository contributionRepository, MemberService memberService, ContributionMapper contributionMapper) {
         this.contributionRepository = contributionRepository;
@@ -35,28 +31,26 @@ public class ContributionServiceImpl implements ContributionService {
     }
 
     @Override
-    public ResponseEntity<?> getAllContribution(Pageable pageable) {
+    public Page<ContributionResponse> getAllContribution(Pageable pageable) {
        Page<Contribution> contributionPage =  contributionRepository.findAll(pageable);
-       Page<ContributionBasicResponse>  responsePage = contributionPage.map(contributionMapper::toBasicResponse);
-        return ApiResponseEntity.success("Contributions retrieved successfully", responsePage);
+         return contributionPage.map(contributionMapper::toResponse);
     }
 
     @Override
-    public ResponseEntity<?> getContributionById(Long id) {
+    public ContributionBasicResponse getContributionById(Long id) {
         Contribution contribution = getContributionByIdOrThrow(id);
-        ContributionBasicResponse response = contributionMapper.toBasicResponse(contribution);
-        return ApiResponseEntity.success("Contribution retrieved successfully", response);
+        return contributionMapper.toBasicResponse(contribution);
     }
 
     @Override
-    public ResponseEntity<?> createContribution(ContributionRequest request) {
+    public ContributionResponse createContribution(ContributionRequest request) {
 
         Long memberId = Long.parseLong(request.memberId());
 
         Member member =   memberService.getMemberByIdOrThrow(memberId);
 
         if (contributionRepository.existsByMemberId(memberId)) {
-            throw new BadRequestException("Sorry Contribution already made by this member. Only one contribution allowed.");
+            throw new BadRequestException("Contribution already made by this member. Only one contribution allowed.");
         }
 
         minimumContribution(request);
@@ -73,26 +67,23 @@ public class ContributionServiceImpl implements ContributionService {
 
         Contribution savedContribution = contributionRepository.save(contribution);
 
-
-        ContributionBasicResponse response = contributionMapper.toBasicResponse(savedContribution);
-        return ApiResponseEntity.success("Contribution created successfully",response);
-
+         return contributionMapper.toResponse(savedContribution);
     }
 
     @Override
-    public ResponseEntity<?> updateContribution(Long id, ContributionRequest request) {
+    public ContributionBasicResponse updateContribution(Long id, ContributionRequest request) {
         return null;
     }
 
     @Override
-    public ResponseEntity<?> deleteContribution(Long id) {
+    public Void deleteContribution(Long id) {
         return null;
     }
 
     @Override
     public Contribution getContributionByIdOrThrow(Long id) {
        return contributionRepository.findById(id)
-               .orElseThrow(() -> new ResourceNotFoundException("Oops! Sorry ...Contribution with id" + " " + " " + id + "not found"));
+               .orElseThrow(() -> new ResourceNotFoundException("Contribution with id" + " " + " " + id + "not found"));
     }
 
     private void minimumContribution(ContributionRequest request){

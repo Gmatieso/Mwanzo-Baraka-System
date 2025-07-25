@@ -6,7 +6,7 @@ import java.util.List;
 
 public record ContributionResponse(
     Long id,
-    MemberResponse members,
+    MemberResponseBasic members,
     BigDecimal amount,
     BigDecimal groupShareAmount,
     BigDecimal individualShareAmount,

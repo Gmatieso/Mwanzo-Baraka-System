@@ -2,9 +2,9 @@ package com.gmatieso.mwanzo.security.service;
 
 import com.gmatieso.mwanzo.security.dtos.UserRequest;
 import com.gmatieso.mwanzo.security.dtos.UserResponse;
+import com.gmatieso.mwanzo.security.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 
 public interface UserService {
    UserResponse createUser(UserRequest userRequest);
@@ -16,4 +16,6 @@ public interface UserService {
    Page<UserResponse> getUsers(Pageable pageable);
 
     UserResponse getUser(Long id);
+
+    User getUserByIdOrThrow(Long id);
 }

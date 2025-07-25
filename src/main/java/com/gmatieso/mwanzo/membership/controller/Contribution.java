@@ -1,10 +1,13 @@
 package com.gmatieso.mwanzo.membership.controller;
 
 import com.gmatieso.mwanzo.common.config.ApiConfig;
+import com.gmatieso.mwanzo.common.response.ApiResponseEntity;
+import com.gmatieso.mwanzo.membership.dtos.ContributionBasicResponse;
 import com.gmatieso.mwanzo.membership.dtos.ContributionRequest;
 import com.gmatieso.mwanzo.membership.dtos.ContributionResponse;
 import com.gmatieso.mwanzo.membership.service.ContributionService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Pageable;
@@ -21,17 +24,20 @@ public class Contribution {
     }
 
     @PostMapping
-    public ResponseEntity<?> createContribution(@RequestBody  ContributionRequest contributionRequest) {
-        return  contributionService.createContribution(contributionRequest);
+    public ResponseEntity<?> createContribution( @Valid @RequestBody  ContributionRequest contributionRequest) {
+        ContributionResponse response =  contributionService.createContribution(contributionRequest);
+         return ApiResponseEntity.success("Contribution created successfully",response);
     }
 
     @GetMapping
     public  ResponseEntity<?> getAllContribution(Pageable pageable){
-        return  contributionService.getAllContribution(pageable);
+        Page<ContributionResponse> responsePage =  contributionService.getAllContribution(pageable);
+        return ApiResponseEntity.success("Contributions retrieved successfully", responsePage);
     }
 
     @GetMapping("{id}")
     public ResponseEntity<?> getContributionById(@PathVariable Long id){
-        return  contributionService.getContributionById(id);
+         ContributionBasicResponse response =  contributionService.getContributionById(id);
+        return ApiResponseEntity.success("Contribution retrieved successfully", response);
     }
 }

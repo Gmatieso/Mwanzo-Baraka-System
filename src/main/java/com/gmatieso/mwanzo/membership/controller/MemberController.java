@@ -1,9 +1,12 @@
 package com.gmatieso.mwanzo.membership.controller;
 
 import com.gmatieso.mwanzo.common.config.ApiConfig;
+import com.gmatieso.mwanzo.common.response.ApiResponseEntity;
 import com.gmatieso.mwanzo.membership.dtos.MemberRequest;
+import com.gmatieso.mwanzo.membership.dtos.MemberResponseBasic;
 import com.gmatieso.mwanzo.membership.service.MemberService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,27 +25,31 @@ public class MemberController {
 
     @PostMapping
     public ResponseEntity<?> createMember(@RequestBody @Valid MemberRequest memberRequest) {
-        return memberService.createMember(memberRequest);
-
+        MemberResponseBasic response =  memberService.createMember(memberRequest);
+        return ApiResponseEntity.success("Members created successfully", response);
     }
 
     @GetMapping
     public ResponseEntity<?> getMembers(Pageable pageable){
-       return memberService.getMembers(pageable);
+       Page<MemberResponseBasic> responsePage =  memberService.getMembers(pageable);
+       return  ApiResponseEntity.success("Members retrieved successfully", responsePage);
     }
 
     @GetMapping("{id}")
     public ResponseEntity<?> getMember( @PathVariable Long id){
-        return memberService.getMember(id);
+        MemberResponseBasic response = memberService.getMember(id);
+        return ApiResponseEntity.success("Member retrieved successfully", response);
     }
 
     @PutMapping("{id}")
     public ResponseEntity<?> UpdateMember(@PathVariable Long id, @RequestBody MemberRequest memberRequest){
-        return  memberService.updateMember(id, memberRequest);
+        MemberResponseBasic response =   memberService.updateMember(id, memberRequest);
+        return  ApiResponseEntity.success("Member updated successfully", response);
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<?> deleteMember(@PathVariable Long id){
-        return memberService.deleteMember(id);
+                memberService.deleteMember(id);
+        return  ApiResponseEntity.success("Member deleted successfully",null);
     }
 }
