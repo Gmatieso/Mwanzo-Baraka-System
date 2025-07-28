@@ -1,0 +1,8 @@
+ALTER TABLE member
+ADD COLUMN group_id BIGINT;
+
+ALTER TABLE member
+ADD CONSTRAINT fk_member_group
+FOREIGN KEY (group_id)
+REFERENCES "groups" (id)
+ON DELETE SET NULL
