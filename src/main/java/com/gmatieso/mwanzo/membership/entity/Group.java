@@ -39,11 +39,11 @@ public class Group {
     @Column(name = "member_count", nullable = false)
     private  Long memberCount;
 
-    @Column(name = "expected_monthly_contribution", nullable = false)
-    private BigDecimal expectedMonthlyContribution;
+//    @Column(name = "expected_monthly_contribution", nullable = false)
+//    private BigDecimal expectedMonthlyContribution;
 
-    @Column(name = "contribution_schedule", nullable = false)
-    private String contributionSchedule;
+//    @Column(name = "contribution_schedule", nullable = false)
+//    private String contributionSchedule;
 
     @Column(name = "group_category", nullable = false)
     private String groupCategory;
