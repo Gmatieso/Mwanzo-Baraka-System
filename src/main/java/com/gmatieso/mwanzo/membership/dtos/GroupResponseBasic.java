@@ -1,6 +1,7 @@
 package com.gmatieso.mwanzo.membership.dtos;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public record GroupResponseBasic(
         Long id,
@@ -10,6 +11,7 @@ public record GroupResponseBasic(
         LocalDateTime dateRegistered,
         String postalAddress,
         String groupCategory,
-        String sector
+        String sector,
+        List<MemberResponseBasic> member
 ) {
 }
