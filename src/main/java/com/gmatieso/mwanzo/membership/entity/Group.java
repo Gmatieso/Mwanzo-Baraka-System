@@ -1,6 +1,8 @@
 package com.gmatieso.mwanzo.membership.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -8,6 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
+@Table(name = "group")
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
