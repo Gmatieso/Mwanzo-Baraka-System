@@ -12,10 +12,11 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@Table(name = "group")
+@Table(name = "groups")
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "group_id", nullable = false)
     private Long id;
 
     @Column(name = "group_name", nullable = false)
@@ -36,8 +37,8 @@ public class Group {
     @Column(name = "postal_address", nullable = false)
     private String postalAddress;
 
-    @Column(name = "member_count", nullable = false)
-    private  Long memberCount;
+//    @Column(name = "member_count", nullable = false)
+//    private  Long memberCount;
 
 //    @Column(name = "expected_monthly_contribution", nullable = false)
 //    private BigDecimal expectedMonthlyContribution;
