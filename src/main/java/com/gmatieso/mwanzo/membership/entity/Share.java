@@ -27,4 +27,36 @@ public class Share {
 
     @Column(name = "lastUpdated")
     private LocalDateTime lastUpdated;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public BigDecimal getTotalShares() {
+        return totalShares;
+    }
+
+    public void setTotalShares(BigDecimal totalShares) {
+        this.totalShares = totalShares;
+    }
+
+    public LocalDateTime getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(LocalDateTime lastUpdated) {
+        this.lastUpdated = lastUpdated;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
+
+    public Member getMember() {
+        return member;
+    }
 }
