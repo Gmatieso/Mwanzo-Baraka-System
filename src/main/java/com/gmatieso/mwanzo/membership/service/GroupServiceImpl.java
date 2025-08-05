@@ -8,10 +8,12 @@ import com.gmatieso.mwanzo.membership.entity.Member;
 import com.gmatieso.mwanzo.membership.mappers.GroupMapper;
 import com.gmatieso.mwanzo.membership.repository.GroupRepository;
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
 
 import java.awt.print.Pageable;
 import java.util.List;
 
+@Service
 public class GroupServiceImpl implements GroupService {
 
     private final MemberService memberService;
@@ -53,7 +55,7 @@ public class GroupServiceImpl implements GroupService {
         group.setMembers(member);
 
        Group savedGroup = groupRepository.save(group);
-        return null;
+        return groupMapper.toResponseBasic(savedGroup);
 
     }
 

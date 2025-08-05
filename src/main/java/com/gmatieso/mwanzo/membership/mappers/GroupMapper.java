@@ -3,6 +3,7 @@ package com.gmatieso.mwanzo.membership.mappers;
 import com.gmatieso.mwanzo.membership.dtos.*;
 import com.gmatieso.mwanzo.membership.entity.Group;
 import com.gmatieso.mwanzo.membership.entity.Member;
+import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
@@ -10,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Mapper(componentModel = "spring")
 public interface GroupMapper {
     Group toEntity(GroupRequest groupRequest);
 
