@@ -36,6 +36,51 @@ public class Contribution {
     @Column(name = "individual_share_amount")
     private BigDecimal individualShareAmount;
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public BigDecimal getGroupShareAmount() {
+        return groupShareAmount;
+    }
+
+    public void setGroupShareAmount(BigDecimal groupShareAmount) {
+        this.groupShareAmount = groupShareAmount;
+    }
+
+    public BigDecimal getIndividualShareAmount() {
+        return individualShareAmount;
+    }
+
+    public void setIndividualShareAmount(BigDecimal individualShareAmount) {
+        this.individualShareAmount = individualShareAmount;
+    }
+
+    public LocalDateTime getContributionDate() {
+        return contributionDate;
+    }
+
+    public void setContributionDate(LocalDateTime contributionDate) {
+        this.contributionDate = contributionDate;
+    }
+
+    public Member getMember() {
+        return member;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
 }
