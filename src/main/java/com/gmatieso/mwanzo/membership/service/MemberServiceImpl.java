@@ -2,10 +2,8 @@ package com.gmatieso.mwanzo.membership.service;
 
 import com.gmatieso.mwanzo.common.exception.BadRequestException;
 import com.gmatieso.mwanzo.common.exception.ResourceNotFoundException;
-import com.gmatieso.mwanzo.common.response.ApiResponseEntity;
 import com.gmatieso.mwanzo.common.utils.MemberType;
 import com.gmatieso.mwanzo.membership.dtos.MemberRequest;
-import com.gmatieso.mwanzo.membership.dtos.MemberResponse;
 import com.gmatieso.mwanzo.membership.dtos.MemberResponseBasic;
 import com.gmatieso.mwanzo.membership.entity.Member;
 import com.gmatieso.mwanzo.membership.mappers.MemberMapper;
@@ -14,12 +12,11 @@ import com.gmatieso.mwanzo.security.entity.User;
 import com.gmatieso.mwanzo.security.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Optional;
+import java.util.List;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -80,6 +77,16 @@ public class MemberServiceImpl implements MemberService {
     public Page<MemberResponseBasic>  getMembers(Pageable pageable) {
         Page<Member> membersPage = memberRepository.findAll(pageable);
         return   membersPage.map(memberMapper::toResponseBasic);
+    }
+
+    @Override
+    public List<Member> getMembersByIdOrThrow(List<Long> ids) {
+        List<Member> members = memberRepository.findAllById(ids);
+
+        if(members.size() != ids.size()){
+            throw new ResourceNotFoundException("Some member IDs not found. Expected:" + ids + ", Found" + members.stream().map(Member::getId).toList());
+        }
+        return members;
     }
 
     @Override
