@@ -68,6 +68,14 @@ public class Member {
     @Column(name = "exit_date")
     private LocalDateTime exitDate;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public MemberType getMemberType() {
         return memberType;
     }
@@ -90,5 +98,13 @@ public class Member {
 
     public void setRegistrationFees(BigDecimal registrationFees) {
        this.registrationFees = registrationFees;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
     }
 }
