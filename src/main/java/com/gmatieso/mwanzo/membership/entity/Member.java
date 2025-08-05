@@ -23,9 +23,6 @@ public class Member {
     @Column(name = "member_id", nullable = false)
     private Long id;
 
-//    @Column(name = "members_name", nullable = false)
-//    private String name;
-
     @Column(name = "contribution_id")
     @OneToMany( mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Contribution> contribution;
@@ -106,5 +103,13 @@ public class Member {
 
     public User getUser() {
         return user;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }
