@@ -36,6 +36,14 @@ public class Group {
     @Column(name = "postal_address", nullable = false)
     private String postalAddress;
 
+    @Column(name = "registration_fee", nullable = false)
+    private BigDecimal registrationFee;
+
+    @Column(name = "phone", nullable = false)
+    private String phone;
+
+
+
 //    @Column(name = "member_count", nullable = false)
 //    private  Long memberCount;
 
