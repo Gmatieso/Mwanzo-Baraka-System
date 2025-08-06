@@ -21,7 +21,7 @@ public class Group {
     @Column(name = "group_name", nullable = false)
     private String name;
 
-    @Column(name = "registrationNumber", nullable = false)
+    @Column(name = "registration_number", nullable = false)
     private String registrationNumber;
 
     @Column(name = "group_email", nullable = false)
@@ -36,7 +36,7 @@ public class Group {
     @Column(name = "postal_address", nullable = false)
     private String postalAddress;
 
-    @Column(name = "registration_fee", nullable = false)
+    @Column(name = "group_registration_fee", nullable = false)
     private BigDecimal registrationFee;
 
     @Column(name = "phone", nullable = false)
@@ -81,6 +81,7 @@ public class Group {
     public String getRegistrationNumber() {
         return registrationNumber;
     }
+
 
     public void setRegistrationNumber(String registrationNumber) {
         this.registrationNumber = registrationNumber;
@@ -141,4 +142,21 @@ public class Group {
     public String getSector() {
         return sector;
     }
+
+    public BigDecimal getRegistrationFee(){
+        return registrationFee;
+    }
+
+    public void  setRegistrationFee(BigDecimal registrationFee){
+        this.registrationFee = registrationFee;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone){
+        this.phone = phone;
+    }
+
 }
