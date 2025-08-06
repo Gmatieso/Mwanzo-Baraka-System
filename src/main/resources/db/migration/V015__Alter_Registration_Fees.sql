@@ -1,0 +1,1 @@
+ALTER TABLE member ALTER COLUMN registration_fees DROP NOT NULL;
