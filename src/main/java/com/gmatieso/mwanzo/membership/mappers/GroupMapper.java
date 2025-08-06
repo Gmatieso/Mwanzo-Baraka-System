@@ -24,6 +24,8 @@ public interface GroupMapper {
     @Mapping(source = "postalAddress", target = "postalAddress")
     @Mapping(source = "groupCategory", target = "groupCategory")
     @Mapping(source = "sector", target = "sector")
+    @Mapping(source = "phone", target = "phone")
+    @Mapping(source = "registrationFee", target = "registrationFee")
     GroupResponse toResponse(Group group);
 
     @Mapping(source = "id", target = "id")
@@ -36,6 +38,8 @@ public interface GroupMapper {
     @Mapping(source = "groupCategory", target = "groupCategory")
     @Mapping(source = "sector", target = "sector")
     @Mapping(source = "members", target = "members", qualifiedByName = "mapMembers")
+    @Mapping(source = "phone", target = "phone")
+    @Mapping(source = "registrationFee", target = "registrationFee")
     GroupResponseBasic toResponseBasic(Group group);
 
     @Named("mapMembers")
