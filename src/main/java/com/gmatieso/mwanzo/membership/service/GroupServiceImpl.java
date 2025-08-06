@@ -52,6 +52,8 @@ public class GroupServiceImpl implements GroupService {
         group.setPostalAddress(request.postalAddress());
         group.setGroupCategory(request.groupCategory());
         group.setSector(request.sector());
+        group.setRegistrationFee(request.registrationFee());
+        group.setPhone(request.phone());
         group.setMembers(member);
 
        Group savedGroup = groupRepository.save(group);
