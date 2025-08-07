@@ -37,13 +37,13 @@ public interface GroupMapper {
     @Mapping(source = "postalAddress", target = "postalAddress")
     @Mapping(source = "groupCategory", target = "groupCategory")
     @Mapping(source = "sector", target = "sector")
-    @Mapping(source = "members", target = "members", qualifiedByName = "mapMembers")
+    @Mapping(source = "members", target = "members", qualifiedByName = "mapGroupMembers")
     @Mapping(source = "phone", target = "phone")
     @Mapping(source = "registrationFee", target = "registrationFee")
     GroupResponseBasic toResponseBasic(Group group);
 
-    @Named("mapMembers")
-    default List<MemberResponseBasic> mapGroupMember(List<Member> memberList){
+    @Named("mapGroupMembers")
+    default List<MemberResponseBasic> mapGroupMembers(List<Member> memberList){
             return memberList != null ? memberList.stream()
                     .map(member -> new MemberResponseBasic(
                             member.getId(),
