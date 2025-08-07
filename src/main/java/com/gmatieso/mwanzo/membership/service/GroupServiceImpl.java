@@ -9,8 +9,8 @@ import com.gmatieso.mwanzo.membership.mappers.GroupMapper;
 import com.gmatieso.mwanzo.membership.repository.GroupRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Pageable;
 
-import java.awt.print.Pageable;
 import java.util.List;
 
 @Service
@@ -27,12 +27,13 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public Page<GroupResponse> getAllGroups(Pageable pageable) {
-        return null;
+    public Page<GroupResponseBasic> getAllGroups(Pageable pageable) {
+        Page<Group>  groupPage = groupRepository.findAll(pageable);
+        return groupPage.map(groupMapper::toResponseBasic);
     }
 
     @Override
-    public GroupResponse getContributionById(Long id) {
+    public GroupResponse getGroupById(Long id) {
         return null;
     }
 
