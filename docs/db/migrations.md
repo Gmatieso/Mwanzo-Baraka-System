@@ -40,5 +40,5 @@ The Mwanzo Baraka backend uses Flyway to manage database schema migrations. Flwa
     ` src/main/resources/db/migration `
 
 ## Naming Convection: 
- * V<version>__<description>.sql
+ * `V<version>__<description>.sql`
  * example V001__Create_Users_Table.sql
