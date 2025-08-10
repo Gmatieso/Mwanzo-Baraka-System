@@ -1,7 +1,7 @@
 
 # Mwanzo Baraka Database Migrations
 
-The Mwanzo Baraka backend uses Flyway to manage database schema migrations, ensuring consistent database updates across development, testing, and production environments. This document details how to set up and run migrations locally.
+The Mwanzo Baraka backend uses Flyway to manage database schema migrations. Flway auto-applies migration on application startup. This document details how to set up and run migrations locally.
 
 ## Migration Tool
 - **Tool**: Flyway
@@ -36,3 +36,9 @@ The Mwanzo Baraka backend uses Flyway to manage database schema migrations, ensu
 *  **Verify Migration**
     Connect to PostgreSQL: psql -U mwanzo -d mwanzo
 *   check Flyway schema history: **SELECT * FROM  flyway_schema_history;**
+*   migration are stored in:
+    ` src/main/resources/db/migration `
+
+## Naming Convection: 
+ * V<version>__<description>.sql
+ * example V001__Create_Users_Table.sql
