@@ -46,4 +46,16 @@ Use the `compose.yml` file to run PostgreSQL locally:
 - Run: `docker-compose up --build`
 - Check logs: `docker logs postgres-mwanzo`
 
+## Swagger - Docs
+This project integrates Swagger UI via   `springdoc-openapi`. swagger provides an interactive interface to explore and test APIs
+## Available Endpoints
+After starting the Springboot application, Swagger is accessible at:
+- Swagger UI (interactive docs)
+  - http://localhost:8080/swagger-ui.html
+  - http://localhost:8080/swagger-ui/index.html
+- Both resolve to the same UI
+- OpenAPI JSON spec
+  - http://localhost:8080/apidocs
+
+
 *Documented on: 10:34 PM EAT, Wednesday, June 25, 2025*
