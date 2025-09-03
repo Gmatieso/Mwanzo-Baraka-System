@@ -1,8 +1,8 @@
-package com.gmatieso.mwanzo.security.service;
+package com.gmatieso.mwanzo.user.service.userservice;
 
-import com.gmatieso.mwanzo.security.dtos.UserRequest;
-import com.gmatieso.mwanzo.security.dtos.UserResponse;
-import com.gmatieso.mwanzo.security.entity.User;
+import com.gmatieso.mwanzo.user.dtos.UserRequest;
+import com.gmatieso.mwanzo.user.dtos.UserResponse;
+import com.gmatieso.mwanzo.user.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

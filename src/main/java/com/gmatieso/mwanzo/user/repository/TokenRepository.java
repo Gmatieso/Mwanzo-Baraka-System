@@ -1,6 +1,6 @@
-package com.gmatieso.mwanzo.security.repository;
+package com.gmatieso.mwanzo.user.repository;
 
-import com.gmatieso.mwanzo.security.entity.Token;
+import com.gmatieso.mwanzo.user.entity.Token;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

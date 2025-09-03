@@ -1,12 +1,8 @@
-package com.gmatieso.mwanzo.security.entity;
+package com.gmatieso.mwanzo.user.entity;
 
 import com.gmatieso.mwanzo.common.utils.Role;
 import com.gmatieso.mwanzo.membership.entity.Member;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 

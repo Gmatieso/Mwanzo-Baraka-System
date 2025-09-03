@@ -1,4 +1,4 @@
-package com.gmatieso.mwanzo.security.dtos;
+package com.gmatieso.mwanzo.user.dtos;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

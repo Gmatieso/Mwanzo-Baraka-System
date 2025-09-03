@@ -4,7 +4,7 @@ import com.gmatieso.mwanzo.common.utils.Status;
 import com.gmatieso.mwanzo.common.utils.MemberType;
 import com.gmatieso.mwanzo.loans.entity.Guarantor;
 import com.gmatieso.mwanzo.loans.entity.Loan;
-import com.gmatieso.mwanzo.security.entity.User;
+import com.gmatieso.mwanzo.user.entity.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,6 +1,6 @@
-package com.gmatieso.mwanzo.security.service;
+package com.gmatieso.mwanzo.user.service.tokenservice;
 
-import com.gmatieso.mwanzo.security.entity.User;
+import com.gmatieso.mwanzo.user.entity.User;
 
 public interface TokenService {
     void saveNewToken(String token, User user);

@@ -1,10 +1,10 @@
-package com.gmatieso.mwanzo.security.controller;
+package com.gmatieso.mwanzo.user.controller;
 
 import com.gmatieso.mwanzo.common.config.ApiConfig;
 import com.gmatieso.mwanzo.common.response.ApiResponseEntity;
-import com.gmatieso.mwanzo.security.dtos.UserRequest;
-import com.gmatieso.mwanzo.security.dtos.UserResponse;
-import com.gmatieso.mwanzo.security.service.UserService;
+import com.gmatieso.mwanzo.user.dtos.UserRequest;
+import com.gmatieso.mwanzo.user.dtos.UserResponse;
+import com.gmatieso.mwanzo.user.service.userservice.UserService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

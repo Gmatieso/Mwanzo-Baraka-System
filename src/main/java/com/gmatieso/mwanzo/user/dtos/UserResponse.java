@@ -1,9 +1,4 @@
-package com.gmatieso.mwanzo.security.dtos;
-
-import com.gmatieso.mwanzo.membership.dtos.MemberResponse;
-import com.gmatieso.mwanzo.membership.dtos.MemberResponseBasic;
-
-import java.util.List;
+package com.gmatieso.mwanzo.user.dtos;
 
 public record UserResponse(
         Long id,

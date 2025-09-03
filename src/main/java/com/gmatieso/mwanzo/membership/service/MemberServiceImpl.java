@@ -2,24 +2,20 @@ package com.gmatieso.mwanzo.membership.service;
 
 import com.gmatieso.mwanzo.common.exception.BadRequestException;
 import com.gmatieso.mwanzo.common.exception.ResourceNotFoundException;
-import com.gmatieso.mwanzo.common.response.ApiResponseEntity;
 import com.gmatieso.mwanzo.common.utils.MemberType;
 import com.gmatieso.mwanzo.membership.dtos.MemberRequest;
-import com.gmatieso.mwanzo.membership.dtos.MemberResponse;
 import com.gmatieso.mwanzo.membership.dtos.MemberResponseBasic;
 import com.gmatieso.mwanzo.membership.entity.Member;
 import com.gmatieso.mwanzo.membership.mappers.MemberMapper;
 import com.gmatieso.mwanzo.membership.repository.MemberRepository;
-import com.gmatieso.mwanzo.security.entity.User;
-import com.gmatieso.mwanzo.security.service.UserService;
+import com.gmatieso.mwanzo.user.entity.User;
+import com.gmatieso.mwanzo.user.service.userservice.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 @Service
 public class MemberServiceImpl implements MemberService {
