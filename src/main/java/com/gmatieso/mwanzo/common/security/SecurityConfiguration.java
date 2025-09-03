@@ -77,7 +77,7 @@ public class SecurityConfiguration {
                         .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.ERROR).permitAll()
                         .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.ASYNC).permitAll()
                         .requestMatchers(WHITE_LIST_URLS).permitAll()
-//                        .requestMatchers("/api/v3/users/areas/assign").hasAnyRole("ADMIN","SUPER_ADMIN","SALES_MANAGER")
+//                        .requestMatchers("/api/v1/").hasAnyRole("ADMIN","SUPER_ADMIN")
                         .anyRequest()
                         .authenticated())
                 .logout(logoutConfigurer -> logoutConfigurer
