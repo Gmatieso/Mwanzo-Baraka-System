@@ -5,10 +5,12 @@ import com.gmatieso.mwanzo.user.user.entity.Token;
 import com.gmatieso.mwanzo.user.user.entity.User;
 import com.gmatieso.mwanzo.user.user.repository.TokenRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 @RequiredArgsConstructor
 public class TokenServiceImpl implements TokenService {
 

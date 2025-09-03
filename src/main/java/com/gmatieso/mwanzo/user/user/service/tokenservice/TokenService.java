@@ -2,6 +2,7 @@ package com.gmatieso.mwanzo.user.user.service.tokenservice;
 
 import com.gmatieso.mwanzo.user.user.entity.User;
 
+
 public interface TokenService {
     void saveNewToken(String token, User user);
 
