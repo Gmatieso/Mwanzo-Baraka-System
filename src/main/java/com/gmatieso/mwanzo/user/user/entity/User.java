@@ -1,4 +1,4 @@
-package com.gmatieso.mwanzo.user.entity;
+package com.gmatieso.mwanzo.user.user.entity;
 
 import com.gmatieso.mwanzo.common.utils.Role;
 import com.gmatieso.mwanzo.membership.entity.Member;

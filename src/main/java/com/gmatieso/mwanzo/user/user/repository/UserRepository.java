@@ -1,6 +1,6 @@
-package com.gmatieso.mwanzo.user.repository;
+package com.gmatieso.mwanzo.user.user.repository;
 
-import com.gmatieso.mwanzo.user.entity.User;
+import com.gmatieso.mwanzo.user.user.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

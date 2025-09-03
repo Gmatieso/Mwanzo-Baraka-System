@@ -1,10 +1,10 @@
-package com.gmatieso.mwanzo.user.mappers;
+package com.gmatieso.mwanzo.user.user.mappers;
 
 import com.gmatieso.mwanzo.membership.dtos.MemberResponseBasic;
 import com.gmatieso.mwanzo.membership.entity.Member;
-import com.gmatieso.mwanzo.user.dtos.UserRequest;
-import com.gmatieso.mwanzo.user.dtos.UserResponse;
-import com.gmatieso.mwanzo.user.entity.User;
+import com.gmatieso.mwanzo.user.user.dtos.UserRequest;
+import com.gmatieso.mwanzo.user.user.dtos.UserResponse;
+import com.gmatieso.mwanzo.user.user.entity.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;

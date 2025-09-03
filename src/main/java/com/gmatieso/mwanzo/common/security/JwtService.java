@@ -1,6 +1,6 @@
 package com.gmatieso.mwanzo.common.security;
 
-import com.gmatieso.mwanzo.user.service.tokenservice.TokenService;
+import com.gmatieso.mwanzo.user.user.service.tokenservice.TokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

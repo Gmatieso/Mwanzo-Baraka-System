@@ -1,9 +1,9 @@
-package com.gmatieso.mwanzo.user.service.tokenservice;
+package com.gmatieso.mwanzo.user.user.service.tokenservice;
 
 import com.gmatieso.mwanzo.common.utils.TokenType;
-import com.gmatieso.mwanzo.user.entity.Token;
-import com.gmatieso.mwanzo.user.entity.User;
-import com.gmatieso.mwanzo.user.repository.TokenRepository;
+import com.gmatieso.mwanzo.user.user.entity.Token;
+import com.gmatieso.mwanzo.user.user.entity.User;
+import com.gmatieso.mwanzo.user.user.repository.TokenRepository;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;

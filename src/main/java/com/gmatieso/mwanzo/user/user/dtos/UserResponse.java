@@ -1,4 +1,4 @@
-package com.gmatieso.mwanzo.user.dtos;
+package com.gmatieso.mwanzo.user.user.dtos;
 
 public record UserResponse(
         Long id,

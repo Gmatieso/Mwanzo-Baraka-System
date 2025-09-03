@@ -1,6 +1,6 @@
 package com.gmatieso.mwanzo.membership.dtos;
 
-import com.gmatieso.mwanzo.user.dtos.UserResponse;
+import com.gmatieso.mwanzo.user.user.dtos.UserResponse;
 
 import java.util.List;
 

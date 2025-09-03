@@ -1,4 +1,4 @@
-package com.gmatieso.mwanzo.user.entity;
+package com.gmatieso.mwanzo.user.user.entity;
 
 import com.gmatieso.mwanzo.common.utils.TokenType;
 import jakarta.persistence.*;

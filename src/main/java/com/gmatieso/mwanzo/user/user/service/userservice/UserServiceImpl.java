@@ -1,12 +1,12 @@
-package com.gmatieso.mwanzo.user.service.userservice;
+package com.gmatieso.mwanzo.user.user.service.userservice;
 
 import com.gmatieso.mwanzo.common.exception.BadRequestException;
 import com.gmatieso.mwanzo.common.exception.ResourceNotFoundException;
-import com.gmatieso.mwanzo.user.dtos.UserRequest;
-import com.gmatieso.mwanzo.user.dtos.UserResponse;
-import com.gmatieso.mwanzo.user.entity.User;
-import com.gmatieso.mwanzo.user.mappers.UserMapper;
-import com.gmatieso.mwanzo.user.repository.UserRepository;
+import com.gmatieso.mwanzo.user.user.dtos.UserRequest;
+import com.gmatieso.mwanzo.user.user.dtos.UserResponse;
+import com.gmatieso.mwanzo.user.user.entity.User;
+import com.gmatieso.mwanzo.user.user.mappers.UserMapper;
+import com.gmatieso.mwanzo.user.user.repository.UserRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
