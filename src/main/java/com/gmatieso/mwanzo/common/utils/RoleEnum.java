@@ -1,6 +1,13 @@
 package com.gmatieso.mwanzo.common.utils;
 
-public enum Role {
-    ADMIN,
-    MEMBER,
+public enum RoleEnum {
+    SUPER_ADMIN(),
+    ADMIN(),
+    TREASURER(),
+    AUDITOR(),
+    LOAN_OFFICER(),
+    CREDIT_COMMITTEE(),
+    INDIVIDUAL_MEMBER(),
+    GROUP_REPRESENTATIVE(),
+    GROUP_MEMBER()
 }
