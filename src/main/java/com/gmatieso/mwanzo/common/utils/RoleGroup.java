@@ -1,7 +1,6 @@
 package com.gmatieso.mwanzo.common.utils;
 
 import com.gmatieso.mwanzo.common.exception.BadRequestException;
-import com.gmatieso.mwanzo.user.role.models.Role;
 
 import java.util.EnumMap;
 import java.util.EnumSet;
