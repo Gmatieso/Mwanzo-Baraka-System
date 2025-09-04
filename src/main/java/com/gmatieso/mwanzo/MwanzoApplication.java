@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @SpringBootApplication
-public class MwanzoApplication {
+public class    MwanzoApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(MwanzoApplication.class, args);
