@@ -1,6 +1,6 @@
 package com.gmatieso.mwanzo.user.user.entity;
 
-import com.gmatieso.mwanzo.common.utils.Role;
+import com.gmatieso.mwanzo.common.utils.RoleEnum;
 import com.gmatieso.mwanzo.membership.entity.Member;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -57,10 +57,10 @@ public class User implements UserDetails {
     private String password;
 
     @Column(name = "role")
-    private Role role;
+    private RoleEnum roleEnum;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
+        return List.of(new SimpleGrantedAuthority(roleEnum.name()));
     }
 }
