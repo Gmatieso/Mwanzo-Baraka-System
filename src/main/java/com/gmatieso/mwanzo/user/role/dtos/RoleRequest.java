@@ -1,0 +1,11 @@
+package com.gmatieso.mwanzo.user.role.dtos;
+
+import com.gmatieso.mwanzo.common.utils.RoleEnum;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
+import java.util.List;
+import java.util.UUID;
+
+public record RoleRequest(@NotNull  RoleEnum name, @NotEmpty String description, List<UUID> permissionIds) {
+}
