@@ -30,10 +30,10 @@ public interface UserMapper {
         return members != null ? members.stream()
                 .map(member -> new MemberResponseBasic(
                         member.getId(),
-                        member.getMemberType(),
+                        member.getMemberTypeEnum(),
                         null,
                         member.getRegistrationFees(),
-                        member.getStatus()
+                        member.getStatusEnum()
                 ))
                 .collect(Collectors.toList()) : Collections.emptyList();
 

@@ -1,6 +1,6 @@
 package com.gmatieso.mwanzo.user.user.entity;
 
-import com.gmatieso.mwanzo.common.utils.TokenType;
+import com.gmatieso.mwanzo.common.utils.TokenTypeEnum;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -22,7 +22,7 @@ public class Token {
 
     @Enumerated(EnumType.STRING)
     @NotNull
-    private TokenType tokenType;
+    private TokenTypeEnum tokenTypeEnum;
 
     @NotNull
     private boolean expired = false;

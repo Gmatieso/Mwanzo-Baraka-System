@@ -1,7 +1,7 @@
 package com.gmatieso.mwanzo.membership.entity;
 
-import com.gmatieso.mwanzo.common.utils.Status;
-import com.gmatieso.mwanzo.common.utils.MemberType;
+import com.gmatieso.mwanzo.common.utils.MemberTypeEnum;
+import com.gmatieso.mwanzo.common.utils.StatusEnum;
 import com.gmatieso.mwanzo.loans.entity.Guarantor;
 import com.gmatieso.mwanzo.loans.entity.Loan;
 import com.gmatieso.mwanzo.user.user.entity.User;
@@ -46,7 +46,7 @@ public class Member {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "member_type", nullable = false)
-    private MemberType memberType;
+    private MemberTypeEnum memberTypeEnum;
 
     @Column(name = "registration_date", nullable = false)
     private LocalDateTime registrationDate;
@@ -56,7 +56,7 @@ public class Member {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private Status status = Status.ACTIVE;
+    private StatusEnum statusEnum = StatusEnum.ACTIVE;
 
     @Column(name = "exit_notice_date")
     private LocalDateTime exitNoticeDate;
@@ -64,12 +64,12 @@ public class Member {
     @Column(name = "exit_date")
     private LocalDateTime exitDate;
 
-    public MemberType getMemberType() {
-        return memberType;
+    public MemberTypeEnum getMemberTypeEnum() {
+        return memberTypeEnum;
     }
 
-    public void setMemberType(MemberType memberType) {
-       this.memberType = memberType;
+    public void setMemberTypeEnum(MemberTypeEnum memberTypeEnum) {
+       this.memberTypeEnum = memberTypeEnum;
     }
 
     public LocalDateTime getRegistrationDate() {

@@ -1,6 +1,6 @@
 package com.gmatieso.mwanzo.user.role.models;
 
-import com.gmatieso.mwanzo.common.utils.RoleEnum;
+import com.gmatieso.mwanzo.user.role.enums.RoleEnum;
 import com.gmatieso.mwanzo.user.permission.models.Permission;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;

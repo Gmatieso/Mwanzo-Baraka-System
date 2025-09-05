@@ -1,4 +1,5 @@
 package com.gmatieso.mwanzo.common.utils;
 
-public class Constants {
+public enum TokenTypeEnum {
+    BEARER
 }

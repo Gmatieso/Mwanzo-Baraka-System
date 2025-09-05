@@ -10,7 +10,7 @@ The Mwanzo Baraka backend uses PostgreSQL as its local database to store members
 
 ## Tables
 ### `Member`
-- **Columns**: `member_id` (PK, auto-increment), `members_name`, `member_type`, `registration_date`, `registration_fees`, `status`, `exit_notice_date`, `exit_date`
+- **Columns**: `member_id` (PK, auto-increment), `members_name`, `member_type`, `registration_date`, `registration_fees`, `statusEnum`, `exit_notice_date`, `exit_date`
 - **Relationships**: One-to-one with `User`, one-to-many with `Contribution`, `Loan`, `Guarantor`, `Share`
 
 ### `User`

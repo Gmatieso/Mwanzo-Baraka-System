@@ -1,6 +1,6 @@
 package com.gmatieso.mwanzo.user.user.service.tokenservice;
 
-import com.gmatieso.mwanzo.common.utils.TokenType;
+import com.gmatieso.mwanzo.common.utils.TokenTypeEnum;
 import com.gmatieso.mwanzo.user.user.entity.Token;
 import com.gmatieso.mwanzo.user.user.entity.User;
 import com.gmatieso.mwanzo.user.user.repository.TokenRepository;
@@ -21,7 +21,7 @@ public class TokenServiceImpl implements TokenService {
         Token newToken = new Token();
         newToken.setToken(token);
         newToken.setUser(user);
-        newToken.setTokenType(TokenType.BEARER);
+        newToken.setTokenTypeEnum(TokenTypeEnum.BEARER);
 
         tokenRepository.save(newToken);
 

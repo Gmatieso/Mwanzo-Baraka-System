@@ -1,6 +1,6 @@
 package com.gmatieso.mwanzo.loans.entity;
 
-import com.gmatieso.mwanzo.common.utils.Confirmed;
+import com.gmatieso.mwanzo.common.utils.ConfirmedEnum;
 import com.gmatieso.mwanzo.membership.entity.Member;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -22,7 +22,7 @@ public class Guarantor {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "confirmed")
-    private Confirmed confirmed;
+    private ConfirmedEnum confirmedEnum;
 
     @ManyToOne()
     @JoinColumn(name = "loan_id")

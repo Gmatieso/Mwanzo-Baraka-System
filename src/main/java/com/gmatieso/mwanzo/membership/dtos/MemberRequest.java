@@ -1,6 +1,6 @@
 package com.gmatieso.mwanzo.membership.dtos;
 
-import com.gmatieso.mwanzo.common.utils.MemberType;
+import com.gmatieso.mwanzo.common.utils.MemberTypeEnum;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
@@ -12,6 +12,6 @@ public record MemberRequest(
 //        List<Long> contributionId,
         BigDecimal registrationFees,
         LocalDateTime registrationDate,
-        MemberType memberType
+        MemberTypeEnum memberTypeEnum
 ) {
 }

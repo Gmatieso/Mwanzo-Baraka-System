@@ -1,6 +1,6 @@
 package com.gmatieso.mwanzo.user.user.entity;
 
-import com.gmatieso.mwanzo.common.utils.RoleEnum;
+import com.gmatieso.mwanzo.user.role.enums.RoleEnum;
 import com.gmatieso.mwanzo.membership.entity.Member;
 import jakarta.persistence.*;
 import lombok.Getter;

@@ -2,7 +2,7 @@ package com.gmatieso.mwanzo.membership.service;
 
 import com.gmatieso.mwanzo.common.exception.BadRequestException;
 import com.gmatieso.mwanzo.common.exception.ResourceNotFoundException;
-import com.gmatieso.mwanzo.common.utils.MemberType;
+import com.gmatieso.mwanzo.common.utils.MemberTypeEnum;
 import com.gmatieso.mwanzo.membership.dtos.ContributionBasicResponse;
 import com.gmatieso.mwanzo.membership.dtos.ContributionRequest;
 import com.gmatieso.mwanzo.membership.dtos.ContributionResponse;
@@ -95,7 +95,7 @@ public class ContributionServiceImpl implements ContributionService {
 
     private void validateGroupShareFourGroupMembers(ContributionRequest request, Member member){
 //        Member member = new Member();
-        if(member.getMemberType() == MemberType.GROUP){
+        if(member.getMemberTypeEnum() == MemberTypeEnum.GROUP){
            BigDecimal expectedGroupShare = new BigDecimal("200.00");
            if(request.groupShareAmount() == null || request.groupShareAmount().compareTo(expectedGroupShare) != 0){
                throw new BadRequestException("Group share must be Kshs. 200 for group members");

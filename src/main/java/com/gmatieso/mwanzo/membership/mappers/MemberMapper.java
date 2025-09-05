@@ -28,9 +28,9 @@ public interface MemberMapper {
 //    Member toEntity(MemberResponseBasic memberResponseBasic);
 
     @Mapping(source = "id", target = "id")
-    @Mapping(source = "memberType", target = "memberType")
+    @Mapping(source = "memberTypeEnum", target = "memberTypeEnum")
     @Mapping(source = "registrationFees", target = "registrationFees")
-    @Mapping(source = "status", target = "status")
+    @Mapping(source = "status", target = "statusEnum")
     MemberResponseBasic toResponseBasic(Member member);
 
 

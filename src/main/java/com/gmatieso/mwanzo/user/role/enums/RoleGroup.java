@@ -1,4 +1,4 @@
-package com.gmatieso.mwanzo.common.utils;
+package com.gmatieso.mwanzo.user.role.enums;
 
 import com.gmatieso.mwanzo.common.exception.BadRequestException;
 

@@ -1,6 +1,6 @@
 package com.gmatieso.mwanzo.loans.entity;
 
-import com.gmatieso.mwanzo.common.utils.Status;
+import com.gmatieso.mwanzo.common.utils.StatusEnum;
 import com.gmatieso.mwanzo.membership.entity.Member;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -31,7 +31,7 @@ public class Loan {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private Status status;
+    private StatusEnum statusEnum;
 
     @ManyToOne()
     @JoinColumn(name = "member_id")

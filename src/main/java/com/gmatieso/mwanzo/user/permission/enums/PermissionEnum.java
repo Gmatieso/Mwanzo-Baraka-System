@@ -1,4 +1,4 @@
-package com.gmatieso.mwanzo.common.utils;
+package com.gmatieso.mwanzo.user.permission.enums;
 
 public enum PermissionEnum {
 

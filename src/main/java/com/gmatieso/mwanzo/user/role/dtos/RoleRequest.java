@@ -1,6 +1,6 @@
 package com.gmatieso.mwanzo.user.role.dtos;
 
-import com.gmatieso.mwanzo.common.utils.RoleEnum;
+import com.gmatieso.mwanzo.user.role.enums.RoleEnum;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 

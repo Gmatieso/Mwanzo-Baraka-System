@@ -1,6 +1,6 @@
 package com.gmatieso.mwanzo.common.utils;
 
-public enum Confirmed {
+public enum ConfirmedEnum {
     YES,
     NO
 }

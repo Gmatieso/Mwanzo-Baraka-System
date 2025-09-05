@@ -2,7 +2,7 @@ package com.gmatieso.mwanzo.membership.service;
 
 import com.gmatieso.mwanzo.common.exception.BadRequestException;
 import com.gmatieso.mwanzo.common.exception.ResourceNotFoundException;
-import com.gmatieso.mwanzo.common.utils.MemberType;
+import com.gmatieso.mwanzo.common.utils.MemberTypeEnum;
 import com.gmatieso.mwanzo.membership.dtos.MemberRequest;
 import com.gmatieso.mwanzo.membership.dtos.MemberResponseBasic;
 import com.gmatieso.mwanzo.membership.entity.Member;
@@ -38,7 +38,7 @@ public class MemberServiceImpl implements MemberService {
 
         Member member = new Member();
         member.setUser(user);
-        member.setMemberType(memberRequest.memberType());
+        member.setMemberTypeEnum(memberRequest.memberTypeEnum());
         member.setRegistrationDate(memberRequest.registrationDate() != null ? memberRequest.registrationDate() : LocalDateTime.now());
         member.setRegistrationFees(memberRequest.registrationFees());
 
@@ -53,7 +53,7 @@ public class MemberServiceImpl implements MemberService {
           member.setId(memberRequest.user_id());
           member.setRegistrationFees(memberRequest.registrationFees());
           member.setRegistrationDate(memberRequest.registrationDate() != null ? memberRequest.registrationDate(): member.getRegistrationDate());
-          member.setMemberType(memberRequest.memberType());
+          member.setMemberTypeEnum(memberRequest.memberTypeEnum());
 
           Member updatedMember = memberRepository.save(member);
 
@@ -87,9 +87,9 @@ public class MemberServiceImpl implements MemberService {
     private void validateRegistrationFees(MemberRequest memberRequest){
         BigDecimal individualFee = new BigDecimal("2000.00");
         BigDecimal groupFee = new BigDecimal("5000.00");
-        if (memberRequest.memberType() == MemberType.INDIVIDUAL && memberRequest.registrationFees().compareTo(individualFee) != 0){
+        if (memberRequest.memberTypeEnum() == MemberTypeEnum.INDIVIDUAL && memberRequest.registrationFees().compareTo(individualFee) != 0){
             throw new BadRequestException("Registration fee for individual must be Kshs. 2000");
-        } else if (memberRequest.memberType() == MemberType.GROUP && memberRequest.registrationFees().compareTo(groupFee) != 0) {
+        } else if (memberRequest.memberTypeEnum() == MemberTypeEnum.GROUP && memberRequest.registrationFees().compareTo(groupFee) != 0) {
             throw  new BadRequestException("Registration fee for group must be Kshs. 5000");
         }
 

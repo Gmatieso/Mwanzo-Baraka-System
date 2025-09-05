@@ -1,4 +1,4 @@
-package com.gmatieso.mwanzo.common.utils;
+package com.gmatieso.mwanzo.user.role.enums;
 
 public enum RoleEnum {
     SUPER_ADMIN(),

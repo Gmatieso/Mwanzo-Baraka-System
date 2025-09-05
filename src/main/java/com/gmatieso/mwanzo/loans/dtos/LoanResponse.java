@@ -1,6 +1,6 @@
 package com.gmatieso.mwanzo.loans.dtos;
 
-import com.gmatieso.mwanzo.common.utils.Status;
+import com.gmatieso.mwanzo.common.utils.StatusEnum;
 import com.gmatieso.mwanzo.membership.dtos.MemberResponse;
 
 import java.math.BigDecimal;
@@ -12,7 +12,7 @@ public record LoanResponse(
         BigDecimal amount,
         LocalDateTime loanDate,
         LocalDateTime repaymentPeriod,
-        Status status,
+        StatusEnum statusEnum,
         List<MemberResponse> members,
         List<GuarantorResponse> guarantor,
         List<PenaltyResponse> penalty,
