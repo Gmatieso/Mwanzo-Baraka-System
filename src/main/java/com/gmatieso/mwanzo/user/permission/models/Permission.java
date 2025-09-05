@@ -34,8 +34,4 @@ public class Permission {
     @EqualsAndHashCode.Exclude
     private List<Role> roles;
 
-
-
-
-
 }
