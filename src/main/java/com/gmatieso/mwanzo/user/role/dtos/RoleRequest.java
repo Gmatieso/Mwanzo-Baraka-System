@@ -7,5 +7,8 @@ import jakarta.validation.constraints.NotNull;
 import java.util.List;
 import java.util.UUID;
 
-public record RoleRequest(@NotNull  RoleEnum name, @NotEmpty String description, List<UUID> permissionIds) {
+public record RoleRequest(
+        @NotNull  RoleEnum name,
+        @NotEmpty String description,
+        List<UUID> permissionIds) {
 }
