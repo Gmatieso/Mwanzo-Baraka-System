@@ -13,7 +13,7 @@ import com.gmatieso.mwanzo.user.role.repositories.RoleRepository;
 import com.gmatieso.mwanzo.user.role.services.RoleService;
 import com.gmatieso.mwanzo.user.user.dtos.UserRequest;
 import com.gmatieso.mwanzo.user.user.service.userservice.UserService;
-import lombok.AllArgsConstructor;
+import org.springframework.core.env.Environment;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -27,7 +27,6 @@ import static com.gmatieso.mwanzo.user.permission.enums.PermissionEnum.*;
 
 
 @Component
-@AllArgsConstructor
 public class PermissionInitializer {
     private static  final Logger logger = LoggerFactory.getLogger(PermissionInitializer.class);
 
@@ -38,6 +37,15 @@ public class PermissionInitializer {
     private final PermissionRepository permissionRepository;
     private final UserService userService;
     private final RoleRepository roleRepository;
+
+    public PermissionInitializer(Environment env, PermissionGroupService permissionGroupService, RoleService roleService, PermissionRepository permissionRepository, UserService userService, RoleRepository roleRepository) {
+        this.initEnabled = Boolean.parseBoolean(env.getProperty("mwanzo.init.enabled", "false"));
+        this.permissionGroupService = permissionGroupService;
+        this.roleService = roleService;
+        this.permissionRepository = permissionRepository;
+        this.userService = userService;
+        this.roleRepository = roleRepository;
+    }
 
     @Bean
     public ApplicationRunner init() {
