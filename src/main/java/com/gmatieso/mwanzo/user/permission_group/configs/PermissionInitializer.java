@@ -19,8 +19,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -201,7 +199,7 @@ public class PermissionInitializer {
             UserRequest userRequest = new UserRequest(
                     "mwanzo",
                     "admin",
-                    "developer.mwanzobaraka.co.ke",
+                    "mwanzo-baraka.developer.co.ke",
                     "0707575938",
                     null,
                     null
