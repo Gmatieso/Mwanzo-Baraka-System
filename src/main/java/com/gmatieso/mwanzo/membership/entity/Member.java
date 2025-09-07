@@ -84,6 +84,14 @@ public class Member {
        return registrationFees;
     }
 
+    public  StatusEnum getStatusEnum(){
+        return statusEnum;
+    }
+
+    public  void setStatusEnum(){
+        this.statusEnum = statusEnum;
+    }
+
     public void setRegistrationFees(BigDecimal registrationFees) {
        this.registrationFees = registrationFees;
     }
