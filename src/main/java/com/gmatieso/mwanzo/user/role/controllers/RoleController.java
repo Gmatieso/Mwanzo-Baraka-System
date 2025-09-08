@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Pageable;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping(RoleController.PATH)
 @AllArgsConstructor
@@ -34,6 +36,17 @@ public class RoleController {
     public ResponseEntity<?> getRolesGrouping(){
         return  roleService.getRolesGrouping();
     }
+
+    @GetMapping("{id}")
+    public ResponseEntity<?> getRoleById(@PathVariable UUID id){
+        return roleService.getRoleDetailsById(id);
+    }
+
+    @PutMapping("{roleId}")
+    public ResponseEntity<?> editRole(@PathVariable UUID roleId, @RequestBody @Valid RoleRequest roleRequest ){
+        return roleService.editRole(roleId, roleRequest);
+    }
+
 
     public static final String PATH = ApiConfig.BASE_API_PATH + "roles";
 
