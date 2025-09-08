@@ -1,6 +1,5 @@
 package com.gmatieso.mwanzo.user.user.auth.dtos;
 
-import jakarta.persistence.Entity;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
