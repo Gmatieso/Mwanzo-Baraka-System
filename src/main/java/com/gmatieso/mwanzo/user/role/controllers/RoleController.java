@@ -30,6 +30,11 @@ public class RoleController {
         return roleService.getAllRoles(pageable,name);
     }
 
+    @GetMapping("/groups")
+    public ResponseEntity<?> getRolesGrouping(){
+        return  roleService.getRolesGrouping();
+    }
+
     public static final String PATH = ApiConfig.BASE_API_PATH + "roles";
 
 
