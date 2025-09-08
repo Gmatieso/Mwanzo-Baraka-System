@@ -47,6 +47,11 @@ public class RoleController {
         return roleService.editRole(roleId, roleRequest);
     }
 
+    @DeleteMapping("{roleId}")
+    public ResponseEntity<?> deleteRole(@PathVariable UUID roleId){
+        return  roleService.deleteRole(roleId);
+    }
+
 
     public static final String PATH = ApiConfig.BASE_API_PATH + "roles";
 
