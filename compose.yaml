@@ -31,7 +31,7 @@ services:
     networks:
       - mwanzo_network
     volumes:
-      - ./application.yaml:/app/application.yaml:ro
+      - ./application-prod.yaml:/app/application-prod.yaml:ro
   postgres-db:
     image: postgres:latest
     container_name: "postgres-mwanzo"

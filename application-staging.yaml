@@ -1,4 +1,7 @@
 spring:
+  config:
+    activate:
+      on-profile: staging
   datasource:
     url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/mwanzo_staging}
     username: ${DATABASE_USER:postgres}
