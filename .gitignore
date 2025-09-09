@@ -34,3 +34,4 @@ build/
 .env
 mwanzo-aws.pem
 .pem
+mwanzo-aws-staging.pem
