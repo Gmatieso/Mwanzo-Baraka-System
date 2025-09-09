@@ -8,6 +8,9 @@
 
 name: Java CI with Maven
 
+env:
+  SPRING_PROFILES_ACTIVE: prod
+
 on:
   push:
     branches: [ "main" ]
