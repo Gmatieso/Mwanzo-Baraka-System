@@ -1,5 +1,8 @@
 name: Java CI with Maven (Staging)
 
+env:
+  SPRING_PROFILES_ACTIVE: staging
+
 on:
   push:
     branches: ["staging"]
