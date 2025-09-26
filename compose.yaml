@@ -34,7 +34,7 @@ services:
     networks:
       - mwanzo_network
     volumes:
-      # Named volume for persistence
+      # Named volume for persistence.
       - postgres_data:/var/lib/postgresql/data
 
 networks:
