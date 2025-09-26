@@ -45,6 +45,9 @@ jobs:
         echo "FLYWAY_ENABLED=true" >> .env
         echo "POSTGRES_DB=mwanzo" >> .env
         
+    - name: Verify .env keys
+      run: cut -d '=' -f1 .env
+        
     - name: Run Docker Compose
       run: docker compose --env-file .env up -d --build
 
