@@ -33,4 +33,5 @@ build/
 .vscode/
 .env
 mwanzo-aws.pem
+mwanzo-aws-staging.pem
 .pem
