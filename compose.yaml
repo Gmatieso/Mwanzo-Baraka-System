@@ -15,7 +15,7 @@ services:
     networks:
       - mwanzo_network
     volumes:
-      # Mount config only as read-only
+      # Mount config only as read-only.
       - ./application.yaml:/app/application.yaml:ro
 
   postgres-db:
